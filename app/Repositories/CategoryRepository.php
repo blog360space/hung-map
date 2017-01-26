@@ -55,24 +55,7 @@ class CategoryRepository
         return $str;
     }
     
-    /**
-     * 
-     * @param type $categoryId
-     */
-    public function setPostsToUncategorized(Category $category) 
-    {
-        $children = $category->children();
-        
-        
-        $itemsId = [];
-        foreach ($children as $category) {
-            var_dump($category);
-            $itemsId[] = $category->id;
-        }
-        
-       
-        PostCategory::where('category_id', '=', $category->id)->update(['category_id' => 1]);
-    }
+   
     
     public function getOptionSelect($tree = [], $lv = "", $params = [])
     {
@@ -97,5 +80,21 @@ class CategoryRepository
         
         $str .= "";
         return $str;
+    }
+    
+    public function getTreeIds($tree) 
+    {
+        $rs = [];
+        foreach ($tree as $category) {
+            $rs[] = $category->id;
+            
+            if (count($category->children)) {
+                $tmp = $this->getTreeIds($category->children);
+                
+                $rs = array_merge($tmp, $rs);
+            }
+        }
+        
+        return $rs;
     }
 }

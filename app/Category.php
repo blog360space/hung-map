@@ -26,11 +26,12 @@ class Category extends Model
 
     }  
 
-    public static function tree($type = 'post') 
+    public static function tree($parentId = 0, $type = 'post')
     {
         return static::with(implode('.', array_fill(0, 100, 'children')))
             ->where('type', '=', $type)
-            ->where('parent_id', '=', 0)->get();
-
+            ->where('parent_id', '=', $parentId)->get();
     }
+    
+    
 }

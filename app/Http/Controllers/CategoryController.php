@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Repositories\CategoryRepository;
+use App\PostCategory;
+use DB;
 
 class CategoryController extends Controller
 {
@@ -138,7 +140,13 @@ class CategoryController extends Controller
         
         switch ($category->type) {
             case 'post' :
-                $this->categoriesRepo->setPostsToUncategorized($category);
+                
+                $tree = $category->tree($category->id, 'post');
+                $ids = $this->categoriesRepo->getTreeIds($tree);
+                
+                PostCategory::whereIn('category_id', $ids)->update(['category_id' => 1]);
+                DB::table('categories')->whereIn('id', $ids)->delete();
+                
             break;
         }
         

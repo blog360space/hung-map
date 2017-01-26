@@ -52,7 +52,7 @@ class PostController extends Controller
         $categoryId = isset($request->category) ? $request->category : "";
         $status = isset($request->status) ? $request->status : "";
         
-        $tree = $this->categoryMd->tree('post');    
+        $tree = $this->categoryMd->tree(0,'post');    
       
         $str = $this->categoryRepo->getOptionSelect($tree, "", [
             'selected_id' => $categoryId

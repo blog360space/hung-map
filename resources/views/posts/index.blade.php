@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- Current Posts -->
-@if (count($posts) > 0)
+
 <div class="container">
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
@@ -30,6 +30,7 @@
             </div>
 
             <div class="panel-body">
+                @if (count($posts) > 0)
                 <table class="table table-striped task-table">
                     <thead>
                         <th>Title</th>
@@ -57,14 +58,14 @@
                         @endforeach
                     </tbody>
                 </table>
-                
-                <p>{{ $posts->links() }}</p>
+                @endif
+                <p> @if (count($posts) > 0) {{ $posts->links() }} @endif</p>
             </div>
         </div>
       
     </div>
 </div>
-@endif
+
 
 @endsection
 
