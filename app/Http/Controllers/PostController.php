@@ -10,7 +10,7 @@ use App\Post;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
 use App\Category;
-use App\Common\Cms;
+use App\Helpers\Cms;
 
 class PostController extends Controller
 {

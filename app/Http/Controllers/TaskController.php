@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AbstractAdminController;
 
 use App\Task;
 use App\Repositories\TaskRepository;
 use App\Repositories\TodoRepository;
 
-class TaskController extends Controller
+class TaskController extends AbstractAdminController
 {
     /**
      * The task repository instance.
@@ -35,7 +35,7 @@ class TaskController extends Controller
      */
     public function __construct(TaskRepository $tasks, TodoRepository $todo)
     {
-        $this->middleware('auth');
+        parent::__construct();
 
         $this->tasks = $tasks;
         $this->todo = $todo;

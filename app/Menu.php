@@ -16,14 +16,14 @@ class Menu extends Model
 
     public function children() 
     {
-        return $this->hasMany('App\Menu', 'parent_id', 'id');
+        return $this->hasMany('App\Menu', 'parent_id', 'id')->orderBy('num', 'asc');
 
     }  
 
-    public static function tree($type = 'frontend') 
-    {
+    public static function tree($parentId = 0, $type = 'frontend') 
+    {        
         return static::with(implode('.', array_fill(0, 100, 'children')))
-                ->where('parent_id', '=', 0)
+                ->where('parent_id', '=', $parentId)
                 ->where('type', '=', $type)
                 ->get();
 
