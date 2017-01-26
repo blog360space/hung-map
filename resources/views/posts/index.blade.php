@@ -14,11 +14,13 @@
                     <select name="category" id="categorySl">
                     <option value=""> -- Category -- </option>
                     {!! $categoryFilter !!}</select>
-                    {{ Form::select('statusSl', [
+                    
+                    {{ Form::select('status', [
+                        '' => '-- Status --',
                         1 => 'Active',
                         2 => 'Draft',
                         0 => 'Trash'
-                    ], null, ['id' => 'categorySl']) }}
+                    ], app('request')->input('status'), ['id' => 'statusSl']  ) }}
                    
                     
                     <a class="btn btn-primary btn-xs" href="{{ url('/posts/create/') }}">

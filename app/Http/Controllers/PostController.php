@@ -31,7 +31,9 @@ class PostController extends Controller
     
     
     
-    public function __construct(CategoryRepository $categoryRepo, PostRepository $postRepo, Category $categoryMd) 
+    public function __construct(CategoryRepository $categoryRepo, 
+            PostRepository $postRepo, 
+            Category $categoryMd) 
     {
         $this->middleware('auth');
         
@@ -48,9 +50,10 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $categoryId = isset($request->category) ? $request->category : "";
-        $status = isset($request->status) ? $request->category : "";
+        $status = isset($request->status) ? $request->status : "";
         
-        $tree = $this->categoryMd->tree();        
+        $tree = $this->categoryMd->tree('post');    
+      
         $str = $this->categoryRepo->getOptionSelect($tree, "", [
             'selected_id' => $categoryId
         ]);

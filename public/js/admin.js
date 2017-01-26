@@ -34,7 +34,8 @@ var Post = {
    
     initIndex: function() {
         
-        $("#categorySl").change(function (event) {            
+        $("#categorySl").change(function (event) {
+            alert(1);
             $('#filterFrm').submit();
         });
         $("#statusSl").change(function (event) {            
