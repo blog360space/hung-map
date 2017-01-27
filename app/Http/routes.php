@@ -64,5 +64,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/categories', 'CategoryController@index');
     Route::delete('/categories/destroy/{id}', 'CategoryController@deleteDestroy');
     
+    Route::get('/pages/create', 'PageController@getCreate');
+    Route::post('/pages/store', 'PageController@postStore');    
+    Route::get('/pages/edit/{id}/{slug}', 'PageController@getEdit');
+    Route::post('/pages/update/{id}/{slug}', 'PageController@postUpdate');    
+    Route::get('/pages', 'PageController@index');
+    Route::delete('/pages/destroy/{id}', 'PageController@destroy');
+    
     Route::auth();
 });

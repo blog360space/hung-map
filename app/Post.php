@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Helpers\Cms;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'slug', 'content', 'status'];
+    protected $fillable = ['title', 'slug', 'content', 'status', 'type'];
     
     public function categories()
     {   
@@ -74,5 +75,14 @@ class Post extends Model
         }
            
         return $strTags;
+    }
+    
+    /**
+     * update status to trash
+     */
+    public function trash()
+    {
+        $this->status = Cms::Trash;
+        $this->save();
     }
 }
