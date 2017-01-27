@@ -63,7 +63,8 @@ class CategoryController extends Controller
         
         $category = Category::create([
             'title' => $request->title,
-            'slug' => $request->slug,        
+            'slug' => $request->slug,
+            'type' => $request->type,
         ]);
         
         $request->session()->flash('successMessage', 'Create new post successfully.');        
@@ -116,6 +117,7 @@ class CategoryController extends Controller
         $category->title = $request->title;
         $category->parent_id = $request->parent_id;
         $category->slug = $request->slug;
+        $category->type = $request->type;
         
         $category->save();        
         

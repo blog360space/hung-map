@@ -71,5 +71,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/pages', 'PageController@index');
     Route::delete('/pages/destroy/{id}', 'PageController@destroy');
     
+    Route::get('/products/create', 'ProductController@getCreate');
+    Route::post('/products/store', 'ProductController@postStore');    
+    Route::get('/products/edit/{id}/{slug}', 'ProductController@getEdit');
+    Route::post('/products/update/{id}/{slug}', 'ProductController@postUpdate');    
+    Route::get('/products', 'ProductController@index');
+    Route::delete('/products/destroy/{id}', 'ProductController@destroy');
+    
     Route::auth();
 });

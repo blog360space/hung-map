@@ -41,6 +41,14 @@
                         </div>
                     </div>
                     
+                    <div class="form-group clearfix">
+                        <label for="category-type" class="col-sm-3 control-label">Type</label>
+                        <div class="col-sm-12">
+                            <input type="text" name="type" id="category-type" class="form-control" 
+                                   value="{{old('type')}}">
+                        </div>
+                    </div>
+                    
                     <!-- Add Task Button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
