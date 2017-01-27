@@ -30,9 +30,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type = 'post')
     {
-        $tree = Category::tree();     
+        $tree = Category::tree(0, $type);     
         $tree = $this->categoriesRepo->displayCategory($tree);
         
         return view('categories.index', ['tree' => $tree]);

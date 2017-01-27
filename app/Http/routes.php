@@ -61,7 +61,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/categories/store', 'CategoryController@postStore');
     Route::get('/categories/edit/{id}', 'CategoryController@getEdit');
     Route::post('/categories/update/{id}', 'CategoryController@postUpdate');
-    Route::get('/categories', 'CategoryController@index');
+    Route::get('/categories/{type}', 'CategoryController@index');
     Route::delete('/categories/destroy/{id}', 'CategoryController@deleteDestroy');
     
     Route::get('/pages/create', 'PageController@getCreate');

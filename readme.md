@@ -1,7 +1,7 @@
 # Laravel Quickstart - Intermediate - Task List With Authentication
 
 https://laravel.com/docs/5.2/quickstart-intermediate
-
+# Admin page
 ## post
 - list
     - filter: category z, status z
@@ -15,16 +15,16 @@ https://laravel.com/docs/5.2/quickstart-intermediate
 - delete
     - remove from db z
 - category z
-- tag
+- tag z
 - status z
-    - draft 
-    - publish
-    - trash  
+    - draft  z
+    - publish z
+    - trash  z
 
-## page
-- list
-- create
-- update
+## pagez
+- list z
+- create z
+- update z
 
 ## category
 - tree z
