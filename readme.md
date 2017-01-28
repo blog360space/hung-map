@@ -47,5 +47,17 @@ https://laravel.com/docs/5.2/quickstart-intermediate
      castrol, nachi, casumia, chensing, duro
    - object n-n
      wave, dream, wave 2012, air-blade 2015, wave 110, wave TQ
+-edit 
+   - title
+   - price
+   - description
 
+   - category n-n 
+     ex: vo, ruot, ron, bac, piston bac
+   - tag n-n
+     ex: truoc, sau, oc may,
+   - branch n-n
+     castrol, nachi, casumia, chensing, duro
+   - object n-n
+     wave, dream, wave 2012, air-blade 2015, wave 110, wave TQ
 ## branch
