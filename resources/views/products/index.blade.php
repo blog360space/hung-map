@@ -21,23 +21,26 @@
                 @if (count($products) > 0)
                 <table class="table table-striped task-table">
                     <thead>
-                        <th>Title</th>
+                        <th class="col-sm-10">Title</th>
+                        <th class="col-sm-2">Price</th>
                         <th>&nbsp;</th>
                     </thead>
                     <tbody>
-                        @foreach ($posts as $post)
+                        @foreach ($products as $product)
                             <tr>
                                 <td class="table-text"><div>
-                                        <a href="{{ url('/posts/edit/') }}/{{ $post->id }}/{{ $post->slug }}">
-                                            {{ $post->title }}</a></div></td>
+                                    <a href="{{ url('/products/edit/') }}/{{ $product->id }}/{{ $product->title }}">
+                                        {{ $product->title }}</a></div></td>
+                                <td class="table-text"><div>
+                                    {{ $product->price }}</td>
 
                                 <!-- Task Delete Button -->
                                 <td class="text-right">
-                                    <form action="{{url('posts/destroy/' . $post->id)}}" method="POST">
+                                    <form action="{{url('products/destroy/' . $product->id)}}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
-                                        <button type="submit" id="delete-task-{{ $post->id }}" class="btn btn-danger btn-xs">
+                                        <button type="submit" id="delete-task-{{ $product->id }}" class="btn btn-danger btn-xs">
                                             <i class="fa fa-btn fa-trash"></i>Delete
                                         </button>
                                     </form>

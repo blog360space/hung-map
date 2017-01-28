@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Product;
+use Exception;
 
 class ProductController extends Controller
 {
@@ -15,8 +17,10 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $query = Product::orderBy('products.title');
+        
         return view('products.index', [
-            'products' => []
+            'products' => $query->simplePaginate(15)
         ]);
     }
 
@@ -38,15 +42,26 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function postStore(Request $request)
     {
-        //
+        $this->validateForm($request);
+        
+        $data = [
+            'title' => isset($request->title) ? $request->title : '',
+            'price' => isset($request->price) ? $request->price : 0,
+            'description' => isset($request->description) ? $request->description : 0,
+        ];
+        $product = Product::create($data);
+        
+        $request->session()->flash('successMessage', 'Create new product successfully.');
+        
+        return redirect('products/create');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id     
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -60,9 +75,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function getEdit(Request $request, $id = 0, $slug)
     {
-        //
+        $product = Product::where('id', $id)->first();
+        
+        if (!$product) {
+            throw new Exception("Product id $id not found");
+        }
+        
+        return view('products.edit', [
+            'product' => $product
+        ]);
     }
 
     /**
@@ -72,9 +95,23 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function postUpdate(Request $request, $id)
     {
-        //
+        $product = Product::where('id', '=', $id)->first();
+        
+        if (! $product) {
+            throw new Exception('Product id ' . $id . 'not found');
+        }
+        
+        $this->validateForm($request);        
+        
+        $product->title = isset($request->title) ? $request->title : '';
+        $product->price = isset($request->price) ? $request->price : 0;
+        $product->description = isset($request->description) ? $request->description : '';
+        $product->save();
+        
+        $request->session()->flash('successMessage', 'Update product successfully.');        
+        return redirect('products/edit/' . $product->id . '/' . $product->title);
     }
 
     /**
@@ -86,5 +123,21 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    /**
+     * Validate form input
+     * @param \Illuminate\Http\Request $request
+     */
+    private function validateForm(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required | max:150'
+        ]);
+       
+        
+        $this->validate($request, [
+            'price' => 'required | numeric'
+        ]);
     }
 }

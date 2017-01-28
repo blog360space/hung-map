@@ -11,6 +11,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
 use App\Category;
 use App\Helpers\Cms;
+use Exception;
 
 class PostController extends Controller
 {
@@ -142,6 +143,11 @@ class PostController extends Controller
     public function getEdit($id, $slug = '')
     {
         $post = Post::where('id', $id)->first();  
+        
+        if (! $post) {
+            throw new Exception("Post id $id not found");
+        }
+        
         $post->strTags = $post->getStrTags();
         
         $ids = $post->categories()->getRelatedIds()->toArray();        

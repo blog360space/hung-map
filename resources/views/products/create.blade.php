@@ -5,25 +5,44 @@
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                New Post
+                New product
             </div>
-
             <div class="panel-body">
                 <!-- Display Validation Errors -->
                 @include('common.errors')
 
-                <!-- New Task Form -->
-                <form action="{{ url('posts/store') }}" method="POST">
-                    {{ csrf_field() }}
-                    <?php echo Form::select('size', ['L' => 'Large', 'S' => 'Small']); ?>
-                    <!-- Add Task Button -->
-                    <div class="form-group">
-                        <div class="col-sm-offset-5 col-sm-6">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fa fa-btn fa-plus"></i>Add Post</button>
-                        </div>
-                    </div>
-                </form>
+                {!! Form::open([
+                    'url' => 'products/store', 
+                    'class' => 'form']) !!}
+                    
+                <div class="form-group">
+                    {!! Form::label('Title') !!}
+                    {!! Form::text('title', null, 
+                        array('required', 
+                              'class'=>'form-control', 
+                              'placeholder'=>'Title')) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('Price') !!}
+                    {!! Form::text('price', null, 
+                        array('required', 
+                              'class'=>'form-control', 
+                              'placeholder'=>'Price')) !!}
+                </div>
+                
+                <div class="form-group">
+                    {!! Form::label('Description') !!}
+                    {!! Form::textarea('description', null, 
+                        array(
+                              'class'=>'form-control', 
+                              'placeholder'=>'Description')) !!}
+                </div>    
+                    
+                <div class="form-group"><div class="col-sm-offset-5 col-sm-6">
+                    {!! Form::submit('Save', 
+                      ['class'=>'btn btn-primary']) !!}
+                </div></div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
