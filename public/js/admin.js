@@ -45,6 +45,25 @@ var Post = {
    
 };
 
+var Product = {
+    initTags: function () {
+        var tags = [];
+        $.ajax({
+            url: BASE_URL + '/other/tags', 
+            success: function(result){
+                tags = result.data;
+                $('#product-tags').tagit({
+                    availableTags: tags
+                });
+            },
+            
+            error: function (result) {
+                alert(result.responseJSON.msg);
+            }
+        });
+    },
+};
+
 var Category = {
     intFrmCategory: function () {
         $("#btnDelete").click(function () {

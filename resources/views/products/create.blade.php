@@ -36,8 +36,23 @@
                         array(
                               'class'=>'form-control', 
                               'placeholder'=>'Description')) !!}
-                </div>    
+                </div>
                     
+                <div class="form-group">
+                    {!! Form::label('Category') !!}
+                    <div class="col-sm-12">
+                        {!! $tree !!}                        
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    {!! Form::label('Tags') !!}
+                    {!! Form::text('tags', null, 
+                        array(
+                              'class'=>'form-control', 
+                              'placeholder'=>'Tag',
+                              'id' => 'product-tags')) !!}
+                </div>  
                 <div class="form-group"><div class="col-sm-offset-5 col-sm-6">
                     {!! Form::submit('Save', 
                       ['class'=>'btn btn-primary']) !!}
@@ -51,10 +66,8 @@
 
 @section('script')
 <script>
-    $(document).ready(function(){
-        Post.initSlug();
-        Post.initTags();
-        Post.initTinymce();
+    $(document).ready(function(){        
+        Product.initTags();        
     });
 </script>
 @endsection

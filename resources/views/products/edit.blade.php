@@ -36,12 +36,14 @@
                         array(
                               'class'=>'form-control', 
                               'placeholder'=>'Description')) !!}
-                </div>    
+                </div>
                     
                 <div class="form-group"><div class="col-sm-offset-5 col-sm-6">
                     {!! Form::submit('Save', 
                       ['class'=>'btn btn-primary']) !!}
                 </div></div>
+                    
+                  
                 {!! Form::close() !!}
             </div>
         </div>

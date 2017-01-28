@@ -7,9 +7,31 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Product;
 use Exception;
+use App\Repositories\CategoryRepository;
+use App\Category;
 
 class ProductController extends Controller
-{
+{    
+    
+    /**
+     * @var App\Category
+     */
+    private $categoryMd;
+    
+    /**    
+     * @var App\Repositories\CategoryRepository
+     */
+    private $categoryRepo;   
+    
+    public function __construct(CategoryRepository $categoryRepo, Category $categoryMd) 
+    {
+        $this->middleware('auth');
+        
+        $this->categoryRepo = $categoryRepo;
+        $this->categoryMd = $categoryMd;        
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -31,8 +53,11 @@ class ProductController extends Controller
      */
     public function getCreate()
     {
+        $tree = $this->categoryMd->tree(0, 'product');        
+        $tree = $this->categoryRepo->displayCategory($tree, true);
+        
         return view('products.create', [
-           
+           'tree' => $tree
         ]);
     }
 
@@ -52,6 +77,10 @@ class ProductController extends Controller
             'description' => isset($request->description) ? $request->description : 0,
         ];
         $product = Product::create($data);
+        
+        if (isset ($request->categories)) {
+            $product->categories()->sync($request->categories);
+        }
         
         $request->session()->flash('successMessage', 'Create new product successfully.');
         
