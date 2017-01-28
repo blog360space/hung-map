@@ -82,6 +82,10 @@ class ProductController extends Controller
             $product->categories()->sync($request->categories);
         }
         
+        if (isset($request->tag) ) {
+            $product->setTags($request->tag);
+        }
+        
         $request->session()->flash('successMessage', 'Create new product successfully.');
         
         return redirect('products/create');

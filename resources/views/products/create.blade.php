@@ -47,7 +47,7 @@
                 
                 <div class="form-group">
                     {!! Form::label('Tags') !!}
-                    {!! Form::text('tags', null, 
+                    {!! Form::text('tag', null, 
                         array(
                               'class'=>'form-control', 
                               'placeholder'=>'Tag',
