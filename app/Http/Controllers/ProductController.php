@@ -86,6 +86,14 @@ class ProductController extends Controller
             $product->setTags($request->tag);
         }
         
+        if (isset($request->branch)) {
+            $product->setBranches($request->branch);
+        }
+        
+        if (isset($request->vehicle)) {
+            $product->setVehicles($request->vehicle);
+        }
+        
         $request->session()->flash('successMessage', 'Create new product successfully.');
         
         return redirect('products/create');

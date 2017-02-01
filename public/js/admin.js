@@ -62,6 +62,40 @@ var Product = {
             }
         });
     },
+    
+    initBranches: function () {
+        var branches = [];
+        $.ajax({
+            url: BASE_URL + '/other/branches', 
+            success: function(result){
+                branches = result.data;
+                $('#product-branches').tagit({
+                    availableTags: branches
+                });
+            },
+            
+            error: function (result) {
+                alert(result.responseJSON.msg);
+            }
+        });
+    },
+    
+    initVehicles: function () {
+        var vehicles = [];
+        $.ajax({
+            url: BASE_URL + '/other/vehicles', 
+            success: function(result){
+                vehicles = result.data;
+                $('#product-vehicles').tagit({
+                    availableTags: vehicles
+                });
+            },
+            
+            error: function (result) {
+                alert(result.responseJSON.msg);
+            }
+        });
+    }
 };
 
 var Category = {

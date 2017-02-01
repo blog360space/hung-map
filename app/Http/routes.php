@@ -28,7 +28,9 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     })->middleware('guest');
     
-    Route::get('/other/tags', 'OtherController@tags');
+    Route::get('/other/tags', 'OtherController@getTags');
+    Route::get('/other/branches', 'OtherController@getBranches');
+    Route::get('/other/vehicles', 'OtherController@getVehicles');
     
     Route::get('/blade', function () {
         return view('frontend.child', [
