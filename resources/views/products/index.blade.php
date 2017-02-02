@@ -6,6 +6,40 @@
 
 <div class="container">
     <div class="col-sm-offset-2 col-sm-8">
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <form id="filterFrm" name="filterFrm" method="GET">
+                <div class="pull-left">Fillter</div>
+                
+                    <br class="clearfix"/>
+                </form>
+            </div>
+            
+            <div class="panel-body">
+                <div class="col-sm-2">
+                    <select>
+                        <option>-- Category --</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select>
+                        <option>-- Branch --</option>
+                    </select>
+                </div>
+                
+                <div class="col-sm-2">
+                    <select>
+                        <option>-- Vehicle --</option>
+                    </select>
+                </div>
+                
+                <div class="col-sm-2">
+                    <button class="btn btn-default btn-sm">Search</button>
+                </div>
+            </div>
+        </div>
+        
         <div class="panel panel-default">
             <div class="panel-heading">
                 <form id="filterFrm" name="filterFrm" method="GET">
