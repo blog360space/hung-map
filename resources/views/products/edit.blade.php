@@ -37,6 +37,38 @@
                               'class'=>'form-control', 
                               'placeholder'=>'Description')) !!}
                 </div>
+                <div class="form-group">
+                    {!! Form::label('Category') !!}
+                    <div class="col-sm-12">
+                        {!! $tree !!}                        
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    {!! Form::label('Tags') !!}
+                    {!! Form::text('tag', null, 
+                        array(
+                              'class'=>'form-control', 
+                              'placeholder'=>'Tag',
+                              'id' => 'product-tags')) !!}
+                </div>  
+                <div class="form-group">
+                    {!! Form::label('Branches') !!}
+                    {!! Form::text('branch', null, 
+                        array(
+                              'class'=>'form-control', 
+                              'placeholder'=>'Branch',
+                              'id' => 'product-branches')) !!}
+                </div>
+                    
+                <div class="form-group">
+                    {!! Form::label('Vehicles') !!}
+                    {!! Form::text('vehicle', null, 
+                        array(
+                              'class'=>'form-control', 
+                              'placeholder'=>'Vehicle',
+                              'id' => 'product-vehicles')) !!}
+                </div>
                     
                 <div class="form-group"><div class="col-sm-offset-5 col-sm-6">
                     {!! Form::submit('Save', 
@@ -53,10 +85,10 @@
 
 @section('script')
 <script>
-    $(document).ready(function(){
-        Post.initSlug();
-        Post.initTags();
-        Post.initTinymce();
+    $(document).ready(function(){        
+        Product.initTags();        
+        Product.initBranches();
+        Product.initVehicles();
     });
 </script>
 @endsection

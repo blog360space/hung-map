@@ -124,8 +124,18 @@ class ProductController extends Controller
             throw new Exception("Product id $id not found");
         }
         
+        $ids = $product->categories()->getRelatedIds()->toArray();
+        $tree = $this->categoryMd->tree(0, 'product');        
+        $tree = $this->categoryRepo->displayCategory($tree, true, $ids);
+        
+        $product->tag = $product->getStrTags();
+        $product->branch = $product->getStrBranches();
+        $product->vehicle = $product->getStrVehicles();
+        
+        
         return view('products.edit', [
-            'product' => $product
+            'product' => $product,
+            'tree' => $tree
         ]);
     }
 
@@ -150,6 +160,22 @@ class ProductController extends Controller
         $product->price = isset($request->price) ? $request->price : 0;
         $product->description = isset($request->description) ? $request->description : '';
         $product->save();
+        
+        if (isset ($request->categories)) {
+            $product->categories()->sync($request->categories);
+        }
+        
+        if (isset($request->tag) ) {
+            $product->setTags($request->tag);
+        }
+        
+        if (isset($request->branch)) {
+            $product->setBranches($request->branch);
+        }
+        
+        if (isset($request->vehicle)) {
+            $product->setVehicles($request->vehicle);
+        }
         
         $request->session()->flash('successMessage', 'Update product successfully.');        
         return redirect('products/edit/' . $product->id . '/' . $product->title);

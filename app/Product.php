@@ -113,4 +113,73 @@ class Product extends Model
         }        
         $this->vehicles()->sync($ids);
     }
+    
+    /**
+     * Get tags related to product
+     * split by comma
+     * @return str tags
+     */
+    public function getStrTags()
+    {
+        $strTags = '';
+        
+        foreach ($this->tags as $k => $tag) {
+
+            if ($k == 0) {
+                $strTags .= "";
+            } else {
+                $strTags .= ",";
+            }
+
+            $strTags .= $tag->title;
+        }
+           
+        return $strTags;
+    }
+    
+    /**
+     * Get branches related to product
+     * Split by a comma
+     * @return str branches 
+     */
+    public function getStrBranches()
+    {
+        $strBranches = '';        
+        
+        foreach ($this->branches as $k => $branch) {
+
+            if ($k == 0) {
+                $strBranches .= "";
+            } else {
+                $strBranches .= ",";
+            }
+
+            $strBranches .= $branch->title;
+        }
+           
+        return $strBranches;
+    }
+    
+    /**
+     * Get vehicle related to product
+     * Split by a comma
+     * @return str branches 
+     */
+    public function getStrVehicles()
+    {
+        $strVehicles = '';
+        
+        foreach ($this->vehicles as $k => $vehicle) {
+
+            if ($k == 0) {
+                $strVehicles .= "";
+            } else {
+                $strVehicles .= ",";
+            }
+
+            $strVehicles .= $vehicle->title;
+        }
+           
+        return $strVehicles;
+    }
 }
