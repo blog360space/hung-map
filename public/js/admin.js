@@ -46,6 +46,21 @@ var Post = {
 };
 
 var Product = {
+    initIndex: function () {
+        $("#categorySl").change(function (event) {
+            $('#filterFrm').submit();
+        });
+        $("#statusSl").change(function (event) {            
+            $('#filterFrm').submit();
+        });
+        $("#branchSl").change(function (event) {            
+            $('#filterFrm').submit();
+        });
+        $("#vehicleSl").change(function (event) {            
+            $('#filterFrm').submit();
+        });
+    },
+    
     initTags: function () {
         var tags = [];
         $.ajax({

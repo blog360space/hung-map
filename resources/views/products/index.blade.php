@@ -9,34 +9,36 @@
         
         <div class="panel panel-default">
             <div class="panel-heading">
-                <form id="filterFrm" name="filterFrm" method="GET">
+                
                 <div class="pull-left">Fillter</div>
                 
                     <br class="clearfix"/>
-                </form>
+               
             </div>
             
             <div class="panel-body">
+                <form id="filterFrm" name="filterFrm" method="GET">
                 <div class="col-sm-2">
-                    <select>
-                        <option>-- Category --</option>
-                    </select>
+                    <select name="category" id="categorySl">
+                    <option value=""> -- Category -- </option>
+                    {!! $categoryFilter !!}</select>
                 </div>
                 <div class="col-sm-2">
-                    <select>
-                        <option>-- Branch --</option>
-                    </select>
+                    {{ Form::select('branch', 
+                        $branches, 
+                        app('request')->input('branch'), ['id' => 'branchSl']) }}
                 </div>
                 
                 <div class="col-sm-2">
-                    <select>
-                        <option>-- Vehicle --</option>
-                    </select>
+                    {{ Form::select('vehicle', 
+                        $vehicles, 
+                        app('request')->input('vehicle'), ['id' => 'vehicleSl']) }}
                 </div>
                 
                 <div class="col-sm-2">
                     <button class="btn btn-default btn-sm">Search</button>
                 </div>
+                </form>
             </div>
         </div>
         
@@ -98,8 +100,7 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        
-        
+        Product.initIndex();
     });
 </script>
 @endsection

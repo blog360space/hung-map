@@ -9,6 +9,8 @@ use App\Product;
 use Exception;
 use App\Repositories\CategoryRepository;
 use App\Category;
+use App\Branch;
+use App\Vehicle;
 
 class ProductController extends Controller
 {    
@@ -37,12 +39,45 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $categoryId = isset($request->category) ? $request->category : "";
+        $branchId = isset($request->branch) ? $request->branch : "";
+        $vehicleId = isset($request->vehicle) ? $request->vehicle : "";
+        
+        $tree = $this->categoryMd->tree(0,'product');    
+        $branches = Branch::getArrayForDropDownList();
+        $vehicles = Vehicle::getArrayForDropDownList();
+        
+        $str = $this->categoryRepo->getOptionSelect($tree, "", [
+            'selected_id' => $categoryId
+        ]);
+        
         $query = Product::orderBy('products.title');
         
+        if (trim($categoryId) != "") {
+            $query->join('product_categories', 
+                    'product_categories.product_id', '=', 'products.id')
+                ->where('product_categories.category_id', '=', $categoryId );
+        }
+        
+        if (trim($branchId) != "") {
+            $query->join('product_branches', 
+                    'product_branches.product_id', '=', 'products.id')
+                ->where('product_branches.branch_id', '=', $branchId );
+        }
+        
+        if (trim($vehicleId) != "") {
+            $query->join('product_vehicles', 
+                    'product_vehicles.product_id', '=', 'products.id')
+                ->where('product_vehicles.vehicle_id', '=', $vehicleId );
+        }
+        
         return view('products.index', [
-            'products' => $query->simplePaginate(15)
+            'products' => $query->simplePaginate(15),
+            'categoryFilter' => $str,
+            'branches' => $branches,
+            'vehicles' => $vehicles
         ]);
     }
 
