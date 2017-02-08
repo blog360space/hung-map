@@ -12,7 +12,7 @@ class Vehicle extends Model
         $vehicles = [];
         
         if ($addFistItem) {
-            $vehicles[''] = '-- Vehicles --';
+            $vehicles[''] = 'Vehicles';
         }
         
         foreach ($arr as $item) {

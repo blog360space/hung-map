@@ -52,6 +52,7 @@ class PostController extends Controller
     {
         $categoryId = isset($request->category) ? $request->category : "";
         $status = isset($request->status) ? $request->status : "";
+        $search = isset($request->search) ? trim($request->search) : "";
         
         $tree = $this->categoryMd->tree(0,'post');    
       
@@ -70,6 +71,10 @@ class PostController extends Controller
             $query->where('posts.status', '=', $status);
         } else {
             $query->whereIn('posts.status', [Cms::Active, Cms::Draft]);
+        }
+        
+        if ($search != "") {
+            $query->where('posts.title', 'LIKE', '%' . addslashes($search) . '%');
         }
         
         return view('posts.index', [

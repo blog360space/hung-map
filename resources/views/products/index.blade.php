@@ -9,35 +9,35 @@
         
         <div class="panel panel-default">
             <div class="panel-heading">
-                
                 <div class="pull-left">Fillter</div>
-                
-                    <br class="clearfix"/>
-               
+                <br class="clearfix"/>
             </div>
             
             <div class="panel-body">
                 <form id="filterFrm" name="filterFrm" method="GET">
                 <div class="col-sm-2">
-                    <select name="category" id="categorySl">
-                    <option value=""> -- Category -- </option>
+                    <select name="category" id="categorySl" class="form-control input-sm">
+                    <option value="">Category</option>
                     {!! $categoryFilter !!}</select>
                 </div>
                 <div class="col-sm-2">
                     {{ Form::select('branch', 
                         $branches, 
-                        app('request')->input('branch'), ['id' => 'branchSl']) }}
+                        app('request')->input('branch'), ['id' => 'branchSl', 'class' => 'form-control input-sm']) }}
                 </div>
                 
                 <div class="col-sm-2">
                     {{ Form::select('vehicle', 
                         $vehicles, 
-                        app('request')->input('vehicle'), ['id' => 'vehicleSl']) }}
+                        app('request')->input('vehicle'), ['id' => 'vehicleSl', 'class' => 'form-control input-sm']) }}
                 </div>
                 
-                <div class="col-sm-2">
-                    <button class="btn btn-default btn-sm">Search</button>
-                </div>
+                <div class="col-sm-4">
+                    {{ Form::text('search', app('request')->input('search'), [
+                        'class' => 'form-control input-sm',
+                        'placeholder' => 'Enter keywork to search'
+                    ])}}
+                </div>                    
                 </form>
             </div>
         </div>

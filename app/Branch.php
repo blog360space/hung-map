@@ -12,7 +12,7 @@ class Branch extends Model
         $branches = [];
         
         if ($addFistItem) {
-            $branches[''] = '-- Branches --';
+            $branches[''] = 'Branches';
         }
         
         foreach ($arr as $item) {

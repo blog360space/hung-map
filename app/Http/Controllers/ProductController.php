@@ -44,6 +44,7 @@ class ProductController extends Controller
         $categoryId = isset($request->category) ? $request->category : "";
         $branchId = isset($request->branch) ? $request->branch : "";
         $vehicleId = isset($request->vehicle) ? $request->vehicle : "";
+        $search = isset($request->search) ? trim($request->search) : "";
         
         $tree = $this->categoryMd->tree(0,'product');    
         $branches = Branch::getArrayForDropDownList();
@@ -71,6 +72,10 @@ class ProductController extends Controller
             $query->join('product_vehicles', 
                     'product_vehicles.product_id', '=', 'products.id')
                 ->where('product_vehicles.vehicle_id', '=', $vehicleId );
+        }
+        
+        if ($search != "") {
+            $query->where('products.title', 'LIKE', '%' . addslashes($search) . '%');
         }
         
         return view('products.index', [
