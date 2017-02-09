@@ -23,7 +23,7 @@
                     
                 <div class="col-sm-2">
                     {{ Form::select('status', [
-                        '' => '-- Status --',
+                        '' => 'Status',
                         1 => 'Active',
                         2 => 'Draft',
                         0 => 'Trash'
