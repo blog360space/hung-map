@@ -21,9 +21,9 @@ class UploadController extends Controller
      * Available sizes
      */
     private $sizesImg = [
-        'sq' => ['w' => '150', 'h' => '150'],
-        'sm' => ['w' => '320', 'h' => '214'],
         'md' => ['w' => '640', 'h' => '428'],
+        'sm' => ['w' => '320', 'h' => '214'],
+        'sq' => ['w' => '150', 'h' => '150'],
     ];
     
     /**
@@ -91,17 +91,31 @@ class UploadController extends Controller
             } 
             
             $filename = $file->getClientOriginalName();
-            $file->move($dir, $filename); 
             
+            $file->move($dir, $filename); 
+            $originafile = $dir . '/' .  $filename;
             //process resize
             $source = $dir . '/' . $filename;
             foreach ($this->sizesImg as $k => $size) { 
-                $tmpName = $k . "." . $filename;                
-                $img = Image::make($source)->resize($size['w'], $size['h']);
+                $tmpName = $k . "." . $filename;
+                
+                if ($k != 'sq') {
+                    $img = Image::make($source)->resize($size['w'], null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    });
+                } else {
+                    
+                    $img = Image::make($source)->resize($size['w'] + 100, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })->crop($size['w'], $size['h']);
+                }
+                
                 $img->save($dir . '/' . $tmpName);
             }
             
-            
+            unlink($originafile);            
             $request->session()->flash('successMessage', 'File stored successfully.');
             
         } catch (Exception $ex) {
@@ -134,16 +148,19 @@ class UploadController extends Controller
         $endpoint = $type . '/' . $id;
         $dir = $this->uploadDir . $endpoint;
         
+        $orgName = str_replace("sq.", "", $filename);
         try {            
             if (! $filename) {
                 return redirect('/upload/' . $type . '/' . $id );
             }            
-            $fileName = $dir . '/' . $filename;
-
-            if (file_exists($fileName)) {
-                unlink($fileName);
-                $request->session()->flash('successMessage', 'Delete file successfully.');
-            }        
+            
+            foreach ($this->sizesImg as $k => $item) {
+                $fileName = $dir . '/' . $k . '.' . $orgName;                
+                if (file_exists($fileName)) {
+                    unlink($fileName);
+                    $request->session()->flash('successMessage', 'Delete file successfully.');
+                }        
+            }
         } catch (Exception $ex) {
             $request->session()->flash('errorMessage', $ex->getMessage());
         }

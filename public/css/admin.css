@@ -2,3 +2,7 @@
     list-style-type: none;
 }
 
+.ifUpload {
+    width: 100%; border: none;
+    height: 220px;
+}

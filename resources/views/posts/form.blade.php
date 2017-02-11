@@ -76,7 +76,7 @@
                         {!! Form::label('File') !!}
                         <div class="col-sm-12">
                         <iframe src="{{ url('/upload/posts/' . $post->id ) }}"
-                                style="width: 100%; border: none"></iframe>
+                                class="ifUpload"></iframe>
                         </div>
                     </div>
                     
