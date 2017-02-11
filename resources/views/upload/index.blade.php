@@ -12,9 +12,9 @@
         <div class="form-group text-center">
         <p>{!! Form::file('file', ['multiple'=>true, 'class' => 'form-control']) !!}</p>
         <p class="text-left">            
-            {{ Form::checkbox('resize[]', 'sq', true, ['id' => 'rs-sq']) }}<label for="rs-sq" title="Square 150x150">Square</label><br />
-            {{ Form::checkbox('resize[]', 'sm', true, ['id' => 'rs-sm']) }}<label for="rs-sm" title="Small 320x214">Small</label><br />
-            {{ Form::checkbox('resize[]', 'md', true, ['id' => 'rs-md']) }}<label for="rs-md" title="Medium 640x428">Medium</label><br />            
+            {{ Form::checkbox('sizes[]', 'sq', true, ['id' => 'rs-sq']) }}<label for="rs-sq" title="Square 150x150">Square</label><br />
+            {{ Form::checkbox('sizes[]', 'sm', true, ['id' => 'rs-sm']) }}<label for="rs-sm" title="Small 320x214">Small</label><br />
+            {{ Form::checkbox('sizes[]', 'md', true, ['id' => 'rs-md']) }}<label for="rs-md" title="Medium 640x428">Medium</label><br />            
         </p>
         <p>
         {!! Form::submit('Save', 

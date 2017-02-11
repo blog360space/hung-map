@@ -5,10 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
 use App\Http\Requests;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Validation\Rule;
+use Validator;
 
 class UploadController extends Controller
 {
+    /**
+     * Dir to store upload files
+     * @var string
+     */
     private $uploadDir = __DIR__ . '/../../../public/files/';
+    
+    /**
+     * Available sizes
+     */
+    private $sizesImg = [
+        'sq' => ['w' => '150', 'h' => '150'],
+        'sm' => ['w' => '320', 'h' => '214'],
+        'md' => ['w' => '640', 'h' => '428'],
+    ];
     
     /**
      * Display a listing of the resource.
@@ -19,19 +35,27 @@ class UploadController extends Controller
     {
         $endpoint = $type . '/' . $id;
         $files = [];
-        
+        $results = [];
         try{
             $dir = $this->uploadDir . $endpoint;
             if (is_dir($dir)) {               
                 $files = scandir($dir);
                 unset($files[0], $files[1]);
             }
+            
+            
+            foreach ($files as $file) {
+                if (mb_strpos($file, "sq.") === 0) {
+                    $results[] = $file;
+                }
+            }
+            
         } catch (Exception $ex) {
             $request->session()->flash('errorMessage', $ex->getMessage());
         }
         
         return view('upload.index', [
-            'files' => $files,
+            'files' => $results,
             'endpoint' => $endpoint
         ]);
     }
@@ -54,9 +78,29 @@ class UploadController extends Controller
             if (! is_dir($dir)) {
                 mkdir($dir);
             }
+            
             $file = $request->file('file');
+            // Tell the validator that this file should be an image
+            $rules = array(
+              'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000' // max 10000kb
+            );
+            $validator = Validator::make(['image' => $file], $rules);
+            
+            if ($validator->fails()) {
+                throw new Exception('Please upload an image', 1);
+            } 
+            
             $filename = $file->getClientOriginalName();
-            $file->move($dir, $filename);            
+            $file->move($dir, $filename); 
+            
+            //process resize
+            $source = $dir . '/' . $filename;
+            foreach ($this->sizesImg as $k => $size) { 
+                $tmpName = $k . "." . $filename;                
+                $img = Image::make($source)->resize($size['w'], $size['h']);
+                $img->save($dir . '/' . $tmpName);
+            }
+            
             
             $request->session()->flash('successMessage', 'File stored successfully.');
             
