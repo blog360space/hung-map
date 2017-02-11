@@ -13,10 +13,11 @@
                 @include('common.errors')
 
                 <!-- New Task Form -->
-                <form action="
-                      @if ($post->id > 0) {{ url('posts/update') }}/{{$post->id}}/{{$post->slug}}
-                      @else {{ url('posts/store') }}
-                      @endif" method="POST">
+                {!! Form::model($post, [
+                    'url' => 'posts/update/' . $post->id . '/' . $post->slug, 
+                    'class' => 'form',
+                    'files' => true ]) !!}
+                    
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="post-title" class="col-sm-3 control-label">Title</label>
@@ -63,13 +64,21 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group clearfix">
                         <label for="tags-post" class="col-sm-3 control-label">Tag</label>
                         <div class="col-sm-12">
                             <input type="text" name="tag" class="form-control" 
                                    value="@if(isset($post->strTags)){{$post->strTags}}@else{{old('title')}}@endif" id="tags-post"/>
                         </div>
                     </div>
+                    <br class="clearfix" />
+                    <div class="form-group">
+                    {!! Form::label('File') !!}
+                    
+                    <iframe src="{{ url('/upload/posts/' . $post->id ) }}"
+                            style="border: none;"></iframe>
+                    </div>
+                    
                     <!-- Add Task Button -->
                     <div class="form-group">
                         <div class="col-sm-offset-5 col-sm-6">
@@ -82,7 +91,7 @@
                             </button>
                         </div>
                     </div>
-                </form>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

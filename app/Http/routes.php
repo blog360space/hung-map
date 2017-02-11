@@ -80,5 +80,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/products', 'ProductController@index');
     Route::delete('/products/destroy/{id}', 'ProductController@destroy');
     
+    Route::get('/upload/{type}/{id}', 'UploadController@getIndex');
+    Route::post('/upload/{type}/{id}', 'UploadController@postStore');
+    Route::delete('/upload/{type}/{id}', 'UploadController@deleteDestroy');
+    
     Route::auth();
 });

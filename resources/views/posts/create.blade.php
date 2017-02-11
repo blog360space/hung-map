@@ -8,7 +8,7 @@
                 New Post
             </div>
 
-            <div class="panel-body" ng-controller="postsCtl">
+            <div class="panel-body">
                 <!-- Display Validation Errors -->
                 @include('common.errors')
 
