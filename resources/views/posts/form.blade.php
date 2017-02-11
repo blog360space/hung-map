@@ -71,12 +71,13 @@
                                    value="@if(isset($post->strTags)){{$post->strTags}}@else{{old('title')}}@endif" id="tags-post"/>
                         </div>
                     </div>
-                    <br class="clearfix" />
-                    <div class="form-group">
-                    {!! Form::label('File') !!}
-                    
-                    <iframe src="{{ url('/upload/posts/' . $post->id ) }}"
-                            style="border: none;"></iframe>
+                   
+                    <div class="form-group clearfix">
+                        {!! Form::label('File') !!}
+                        <div class="col-sm-12">
+                        <iframe src="{{ url('/upload/posts/' . $post->id ) }}"
+                                style="width: 100%; border: none"></iframe>
+                        </div>
                     </div>
                     
                     <!-- Add Task Button -->
