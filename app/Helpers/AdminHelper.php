@@ -16,6 +16,8 @@ if (! function_exists('display_menu')):
             </a>
 
             <ul class="dropdown-menu" role="menu">
+                <li><a href="' . url('/profiles/change-password') . '">
+                        <i class="fa fa-btn fa-lock"></i>Change password</a></li>
                 <li><a href="' . url('/logout') . '">
                         <i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
             </ul>

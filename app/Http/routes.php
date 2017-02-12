@@ -84,5 +84,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/upload/{type}/{id}', 'UploadController@postStore');
     Route::delete('/upload/{type}/{id}', 'UploadController@deleteDestroy');
     
+    Route::get('/profiles/change-password', 'ProfileController@getChangePassword');
+    Route::post('/profiles/change-password', 'ProfileController@postChangePassword');
+    
     Route::auth();
 });
