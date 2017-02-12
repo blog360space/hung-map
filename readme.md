@@ -39,25 +39,39 @@ https://laravel.com/docs/5.2/quickstart-intermediate
    - price
    - description
 
-   - category n-n 
-     ex: vo, ruot, ron, bac, piston bac
-   - tag n-n
-     ex: truoc, sau, oc may,
-   - branch n-n
-     castrol, nachi, casumia, chensing, duro
-   - object n-n
+   - category n-n z
+     ex: vo, ruot, ron, bac, piston bac z
+   - tag n-n z
+     ex: truoc, sau, oc may, z
+   - branch n-n z
+     castrol, nachi, casumia, chensing, duro 
+   - object n-n z
      wave, dream, wave 2012, air-blade 2015, wave 110, wave TQ
 -edit 
-   - title
-   - price
-   - description
+   - title z
+   - price z
+   - description z
 
-   - category n-n 
+   - category n-n z
      ex: vo, ruot, ron, bac, piston bac
-   - tag n-n
+   - tag n-n z
      ex: truoc, sau, oc may,
-   - branch n-n
+   - branch n-n Z
      castrol, nachi, casumia, chensing, duro
-   - object n-n
+   - object n-n Z
      wave, dream, wave 2012, air-blade 2015, wave 110, wave TQ
 ## branch
+
+## Upload file
+ - iframe
+
+## Todo: 
+    - re-factor code view
+     - display status from helper
+     - display status at post, page list
+    - menu editor: front end, backend
+    - add md editor, md output to html
+    - add html template for fe
+    - disable feature register
+    - add feature change password
+    - Change Project title
