@@ -73,5 +73,5 @@ https://laravel.com/docs/5.2/quickstart-intermediate
     - add md editor, md output to html
     - add html template for fe
     - disable feature register
-    - add feature change password
+    - add feature change password z
     - Change Project title
