@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests;
 use Exception;
 
-class ProfileController extends Controller
+class AdminProfileController extends Controller
 {
     /**
      * Show the form for creating a change password.
