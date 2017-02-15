@@ -12,7 +12,7 @@ use App\Category;
 use App\Helpers\Cms;
 use Exception;
 
-class PostController extends Controller
+class AdminPostController extends Controller
 {
     /**
      * App\Repositories\PostRepository
@@ -78,7 +78,7 @@ class PostController extends Controller
             $query->where('posts.title', 'LIKE', '%' . addslashes($search) . '%');
         }
        
-        return view('posts.index', [
+        return view('admin.posts.index', [
             'posts' => $query->simplePaginate(15),
             'categoryFilter' => $str
         ]);        
@@ -94,7 +94,7 @@ class PostController extends Controller
         $tree = $this->categoryMd->tree();        
         $tree = $this->categoryRepo->displayCategory($tree, true);
         
-        return view('posts.create', [
+        return view('admin.posts.create', [
             'post' => new Post(),
             'tree' => $tree
         ]);
@@ -126,7 +126,7 @@ class PostController extends Controller
         
         $request->session()->flash('successMessage', 'Create new post successfully.');        
         
-        return redirect('/posts/create');
+        return redirect('/admin/posts/create');
     }
 
     /**
@@ -160,7 +160,7 @@ class PostController extends Controller
         $tree = $this->categoryMd->tree();     
         $tree = $this->categoryRepo->displayCategory($tree, true, $ids);
         
-        return view('posts.form', [
+        return view('admin.posts.form', [
             'post' => $post,
             'tree' => $tree
         ]);
@@ -200,7 +200,7 @@ class PostController extends Controller
         
         $request->session()->flash('successMessage', 'Update post successfully.');
         
-        return redirect('/posts/edit/' . $post->id . '/' . $post->slug);
+        return redirect('/admin/posts/edit/' . $post->id . '/' . $post->slug);
     }
     
     /**
@@ -244,6 +244,6 @@ class PostController extends Controller
         }
         $request->session()->flash('successMessage', 'Delete post successfully');
         
-        return redirect('/posts');
+        return redirect('/admin/posts');
     }
 }

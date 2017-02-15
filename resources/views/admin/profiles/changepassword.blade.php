@@ -14,7 +14,7 @@
 
                 <!-- New Task Form -->
                 {!! Form::open([
-                    'url' => 'profiles/change-password/', 
+                    'url' => '/admin/profiles/change-password/', 
                     'class' => 'form',
                     'files' => true ]) !!}
                     

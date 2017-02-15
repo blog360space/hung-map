@@ -48,44 +48,44 @@ Route::group(['middleware' => ['web']], function () {
     })
     ->middleware('guest');
 
-    Route::get('/tasks', 'TaskController@index');
-    Route::post('/task', 'TaskController@store');
-    Route::delete('/task/{task}', 'TaskController@destroy');
+    Route::get('/admin/tasks', 'AdminTaskController@index');
+    Route::post('/admin/task', 'AdminTaskController@store');
+    Route::delete('/admin/task/{task}', 'AdminTaskController@destroy');
     
-    Route::get('/posts/create', 'PostController@getCreate');
-    Route::post('/posts/store', 'PostController@postStore');    
-    Route::get('/posts/edit/{id}/{slug}', 'PostController@getEdit');
-    Route::post('/posts/update/{id}/{slug}', 'PostController@postUpdate');    
-    Route::get('/posts', 'PostController@index');
-    Route::delete('/posts/destroy/{id}', 'PostController@destroy');
+    Route::get('/admin/posts/create', 'AdminPostController@getCreate');
+    Route::post('/admin/posts/store', 'AdminPostController@postStore');    
+    Route::get('/admin/posts/edit/{id}/{slug}', 'AdminPostController@getEdit');
+    Route::post('/admin/posts/update/{id}/{slug}', 'AdminPostController@postUpdate');    
+    Route::get('/admin/posts', 'AdminPostController@index');
+    Route::delete('/admin/posts/destroy/{id}', 'AdminPostController@destroy');
     
-    Route::get('/categories/create', 'CategoryController@getCreate');
-    Route::post('/categories/store', 'CategoryController@postStore');
-    Route::get('/categories/edit/{id}', 'CategoryController@getEdit');
-    Route::post('/categories/update/{id}', 'CategoryController@postUpdate');
-    Route::get('/categories/{type}', 'CategoryController@index');
-    Route::delete('/categories/destroy/{id}', 'CategoryController@deleteDestroy');
+    Route::get('/admin/categories/create', 'AdminCategoryController@getCreate');
+    Route::post('/admin/categories/store', 'AdminCategoryController@postStore');
+    Route::get('/admin/categories/edit/{id}', 'AdminCategoryController@getEdit');
+    Route::post('/admin/categories/update/{id}', 'AdminCategoryController@postUpdate');
+    Route::get('/admin/categories/{type}', 'AdminCategoryController@index');
+    Route::delete('/admin/categories/destroy/{id}', 'AdminCategoryController@deleteDestroy');
     
-    Route::get('/pages/create', 'PageController@getCreate');
-    Route::post('/pages/store', 'PageController@postStore');    
-    Route::get('/pages/edit/{id}/{slug}', 'PageController@getEdit');
-    Route::post('/pages/update/{id}/{slug}', 'PageController@postUpdate');    
-    Route::get('/pages', 'PageController@index');
-    Route::delete('/pages/destroy/{id}', 'PageController@destroy');
+    Route::get('/admin/pages/create', 'AdminPageController@getCreate');
+    Route::post('/admin/pages/store', 'AdminPageController@postStore');    
+    Route::get('/admin/pages/edit/{id}/{slug}', 'AdminPageController@getEdit');
+    Route::post('/admin/pages/update/{id}/{slug}', 'AdminPageController@postUpdate');    
+    Route::get('/admin/pages', 'AdminPageController@index');
+    Route::delete('/admin/pages/destroy/{id}', 'AdminPageController@destroy');
     
-    Route::get('/products/create', 'ProductController@getCreate');
-    Route::post('/products/store', 'ProductController@postStore');    
-    Route::get('/products/edit/{id}/{slug}', 'ProductController@getEdit');
-    Route::post('/products/update/{id}', 'ProductController@postUpdate');    
-    Route::get('/products', 'ProductController@index');
-    Route::delete('/products/destroy/{id}', 'ProductController@destroy');
+    Route::get('/admin/products/create', 'AdminProductController@getCreate');
+    Route::post('/admin/products/store', 'AdminProductController@postStore');    
+    Route::get('/admin/products/edit/{id}/{slug}', 'AdminProductController@getEdit');
+    Route::post('/admin/products/update/{id}', 'AdminProductController@postUpdate');    
+    Route::get('/admin/products', 'AdminProductController@index');
+    Route::delete('/admin/products/destroy/{id}', 'AdminProductController@destroy');
     
-    Route::get('/upload/{type}/{id}', 'UploadController@getIndex');
-    Route::post('/upload/{type}/{id}', 'UploadController@postStore');
-    Route::delete('/upload/{type}/{id}', 'UploadController@deleteDestroy');
+    Route::get('/admin/upload/{type}/{id}', 'AdminUploadController@getIndex');
+    Route::post('/admin/upload/{type}/{id}', 'AdminUploadController@postStore');
+    Route::delete('/admin/upload/{type}/{id}', 'AdminUploadController@deleteDestroy');
     
-    Route::get('/profiles/change-password', 'ProfileController@getChangePassword');
-    Route::post('/profiles/change-password', 'ProfileController@postChangePassword');
+    Route::get('/admin/profiles/change-password', 'AdminProfileController@getChangePassword');
+    Route::post('/admin/profiles/change-password', 'AdminProfileController@postChangePassword');
     
     Route::auth();
 });

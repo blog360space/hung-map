@@ -12,7 +12,7 @@ use App\Category;
 use App\Branch;
 use App\Vehicle;
 
-class ProductController extends Controller
+class AdminProductController extends Controller
 {    
     
     /**
@@ -78,7 +78,7 @@ class ProductController extends Controller
             $query->where('products.title', 'LIKE', '%' . addslashes($search) . '%');
         }
         
-        return view('products.index', [
+        return view('admin.products.index', [
             'products' => $query->simplePaginate(15),
             'categoryFilter' => $str,
             'branches' => $branches,
@@ -96,7 +96,7 @@ class ProductController extends Controller
         $tree = $this->categoryMd->tree(0, 'product');        
         $tree = $this->categoryRepo->displayCategory($tree, true);
         
-        return view('products.create', [
+        return view('admin.products.create', [
            'tree' => $tree
         ]);
     }
@@ -136,7 +136,7 @@ class ProductController extends Controller
         
         $request->session()->flash('successMessage', 'Create new product successfully.');
         
-        return redirect('products/create');
+        return redirect('/adminproducts/create');
     }
 
     /**
@@ -173,7 +173,7 @@ class ProductController extends Controller
         $product->vehicle = $product->getStrVehicles();
         
         
-        return view('products.edit', [
+        return view('admin.products.edit', [
             'product' => $product,
             'tree' => $tree
         ]);
@@ -218,7 +218,7 @@ class ProductController extends Controller
         }
         
         $request->session()->flash('successMessage', 'Update product successfully.');        
-        return redirect('products/edit/' . $product->id . '/' . $product->title);
+        return redirect('/adminproducts/edit/' . $product->id . '/' . $product->title);
     }
 
     /**

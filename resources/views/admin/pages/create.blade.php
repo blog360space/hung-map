@@ -13,7 +13,7 @@
                 @include('common.errors')
 
                 <!-- New Task Form -->
-                <form action="{{ url('pages/store') }}" method="POST">
+                <form action="{{ url('/admin/pages/store') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="post-title" class="col-sm-3 control-label">Title</label>

@@ -57,6 +57,6 @@ class ProfileController extends Controller
             $request->session()->flash('errorMessage', $ex->getMessage());
         }
         
-        return redirect('/profiles/change-password');
+        return redirect('/admin/profiles/change-password');
     }
 }

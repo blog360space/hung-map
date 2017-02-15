@@ -13,10 +13,11 @@
                 @include('common.errors')
 
                 <!-- New Task Form -->
-                <form action="
-                      @if ($post->id > 0) {{ url('pages/update') }}/{{$post->id}}/{{$post->slug}}
-                      @else {{ url('pages/store') }}
-                      @endif" method="POST">
+                {!! Form::model($post, [
+                    'url' => '/admin/posts/update/' . $post->id . '/' . $post->slug, 
+                    'class' => 'form',
+                    'files' => true ]) !!}
+                    
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="post-title" class="col-sm-3 control-label">Title</label>
@@ -43,7 +44,7 @@
                         </div>
                     </div>
                     
-                    <div class="form-group clearfix">
+                    <div class="form-group">
                         <label for="post-status" class="col-sm-3 control-label">Status</label>
                         <div class="col-sm-12">
                             <select class="form-control" name="status">
@@ -55,10 +56,26 @@
                         </div>
                     </div>
                     
+                    <div class="form-group">
+                        <label for="post-title" class="col-sm-3 control-label">Category</label>
+                        <div class="col-sm-12">
+                            {!! $tree !!}
+
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label for="tags-post" class="col-sm-3 control-label">Tag</label>
+                        <div class="col-sm-12">
+                            <input type="text" name="tag" class="form-control" 
+                                   value="@if(isset($post->strTags)){{$post->strTags}}@else{{old('title')}}@endif" id="tags-post"/>
+                        </div>
+                    </div>
+                   
                     <div class="form-group clearfix">
                         {!! Form::label('File') !!}
                         <div class="col-sm-12">
-                        <iframe src="{{ url('/upload/pages/' . $post->id ) }}"
+                        <iframe src="{{ url('/admin/upload/posts/' . $post->id ) }}"
                                 class="ifUpload"></iframe>
                         </div>
                     </div>
@@ -68,14 +85,14 @@
                         <div class="col-sm-offset-5 col-sm-6">
                             <button type="submit" class="btn btn-default">
                                 @if ($post->id > 0)
-                                <i class="fa fa-btn fa-pencil"></i>Save
+                                <i class="fa fa-btn fa-pencil"></i>Edit Post
                                 @else
-                                <i class="fa fa-btn fa-plus"></i>Add
+                                <i class="fa fa-btn fa-plus"></i>Add Post
                                 @endif
                             </button>
                         </div>
                     </div>
-                </form>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

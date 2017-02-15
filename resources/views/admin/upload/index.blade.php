@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-sm-3 col-xs-3 col-md-2">
         {!! Form::open([
-        'url' => 'upload/' . $endpoint, 
+        'url' => '/admin/upload/' . $endpoint, 
         'class' => 'form',
         'files' => true ]) !!}
 
@@ -23,10 +23,10 @@
     @foreach ($files as $file)
     <div class="col-sm-3 col-xs-3 col-md-2">
         <div class="thumbnail hideOverflow">
-            <img src="{{ url('/files/' . $endpoint . '/' . $file)  }}" title="{{ $file }}" alt="{{ $file }}">
+            <img src="{{ url('/admin/files/' . $endpoint . '/' . $file)  }}" title="{{ $file }}" alt="{{ $file }}">
             
             <div class="caption text-right">
-                <form action="{{url('upload/' .$endpoint)}}" method="POST" style="margin: 0px!important">
+                <form action="{{url('/admin/upload/' .$endpoint)}}" method="POST" style="margin: 0px!important">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     {{ Form::hidden('fileName', $file) }} 

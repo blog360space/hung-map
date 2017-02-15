@@ -11,7 +11,7 @@ use App\Task;
 use App\Repositories\TaskRepository;
 use App\Repositories\TodoRepository;
 
-class TaskController extends AbstractAdminController
+class AdminTaskController extends AbstractAdminController
 {
     /**
      * The task repository instance.
@@ -70,7 +70,7 @@ class TaskController extends AbstractAdminController
             'name' => $request->name,
         ]);
 
-        return redirect('/tasks');
+        return redirect('/admin/tasks');
     }
 
     /**
@@ -86,6 +86,6 @@ class TaskController extends AbstractAdminController
 
         $task->delete();
 
-        return redirect('/tasks');
+        return redirect('/admin/tasks');
     }
 }

@@ -11,7 +11,7 @@ use App\Repositories\CategoryRepository;
 use App\PostCategory;
 use DB;
 
-class CategoryController extends Controller
+class AdminCategoryController extends Controller
 {
     /**
      *
@@ -35,7 +35,7 @@ class CategoryController extends Controller
         $tree = Category::tree(0, $type);     
         $tree = $this->categoriesRepo->displayCategory($tree);
         
-        return view('categories.index', ['tree' => $tree]);
+        return view('admin.categories.index', ['tree' => $tree]);
     }
 
     /**
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function getCreate()
     {
         
-        return view('categories.create', [
+        return view('admin.categories.create', [
            
         ]);
     }
@@ -69,7 +69,7 @@ class CategoryController extends Controller
         
         $request->session()->flash('successMessage', 'Create new post successfully.');        
         
-        return redirect('/categories/create');
+        return redirect('/admin/categories/create');
     }
 
     /**
@@ -92,7 +92,7 @@ class CategoryController extends Controller
     public function getEdit($id)
     {
         $category = Category::where('id', $id)->first();        
-        return view('categories.edit', [
+        return view('admin.categories.edit', [
            'category' => $category
         ]);
     }
@@ -123,7 +123,7 @@ class CategoryController extends Controller
         
         $request->session()->flash('successMessage', 'Update category successfully.');
         
-        return redirect('/categories/edit/' . $id);
+        return redirect('/admin/categories/edit/' . $id);
     }
 
     /**
@@ -161,7 +161,7 @@ class CategoryController extends Controller
         
         $request->session()->flash('successMessage', 'Delete category successfully');
         
-        return redirect('/categories');
+        return redirect('/admin/categories');
     }
     
     private function validForm(Request $request) 

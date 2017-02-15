@@ -45,7 +45,7 @@
                 <form id="filterFrm" name="filterFrm" method="GET">
                 <div class="pull-left">Posts</div>
                 <div class="pull-right">
-                    <a class="btn btn-primary btn-xs" href="{{ url('/posts/create/') }}">
+                    <a class="btn btn-primary btn-xs" href="{{ url('/admin/posts/create/') }}">
                     <i class="fa fa-btn fa-plus"></i>New</a></div>                   
                 </form>
                 <br class="clearfix"/>
@@ -62,12 +62,12 @@
                         @foreach ($posts as $post)
                             <tr>
                                 <td class="table-text">{{ status_icon($post->status) }}
-                                        <a href="{{ url('/posts/edit/') }}/{{ $post->id }}/{{ $post->slug }}">
+                                        <a href="{{ url('/admin/posts/edit/') }}/{{ $post->id }}/{{ $post->slug }}">
                                             {{ $post->title }}</a></td>
 
                                 <!-- Task Delete Button -->
                                 <td class="text-right">
-                                    <form action="{{url('posts/destroy/' . $post->id)}}" method="POST">
+                                    <form action="{{url('/admin/posts/destroy/' . $post->id)}}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 

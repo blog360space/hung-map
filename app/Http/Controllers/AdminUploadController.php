@@ -9,7 +9,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Validation\Rule;
 use Validator;
 
-class UploadController extends Controller
+class AdminUploadController extends Controller
 {
     /**
      * Dir to store upload files
@@ -54,7 +54,7 @@ class UploadController extends Controller
             $request->session()->flash('errorMessage', $ex->getMessage());
         }
         
-        return view('upload.index', [
+        return view('admin.upload.index', [
             'files' => $results,
             'endpoint' => $endpoint
         ]);
@@ -127,7 +127,7 @@ class UploadController extends Controller
             $request->session()->flash('errorMessage', $ex->getMessage());
         }
         
-        return redirect('/upload/' . $endpoint);
+        return redirect('/admin/upload/' . $endpoint);
     }
 
     /**
@@ -156,7 +156,7 @@ class UploadController extends Controller
         $orgName = str_replace("sq.", "", $filename);
         try {            
             if (! $filename) {
-                return redirect('/upload/' . $type . '/' . $id );
+                return redirect('/admin/upload/' . $type . '/' . $id );
             }            
             
             foreach ($this->sizesImg as $k => $item) {
@@ -170,6 +170,6 @@ class UploadController extends Controller
             $request->session()->flash('errorMessage', $ex->getMessage());
         }
         
-        return redirect('/upload/' . $endpoint);
+        return redirect('/admin/upload/' . $endpoint);
     }
 }

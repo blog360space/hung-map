@@ -12,7 +12,7 @@
                 @include('common.errors')
 
                 {!! Form::model($product, [
-                    'url' => 'products/update/' . $product->id, 
+                    'url' => '/admin/products/update/' . $product->id, 
                     'class' => 'form']) !!}
                     
                 <div class="form-group">

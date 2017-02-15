@@ -6,7 +6,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-left">Categories</div>
-                <div class="pull-right"><a class="btn btn-primary btn-xs" href="{{ url('/categories/create/') }}">
+                <div class="pull-right"><a class="btn btn-primary btn-xs" href="{{ url('/admin/categories/create/') }}">
                 <i class="fa fa-btn fa-plus"></i>New</a></div>
                 <br class="clearfix"/> </div>
 

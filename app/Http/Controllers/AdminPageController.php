@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Post;
 use App\Helpers\Cms;
 
-class PageController extends Controller
+class AdminPageController extends Controller
 {
     public function __construct() 
     {
@@ -30,7 +30,7 @@ class PageController extends Controller
             $query->whereIn('posts.status', [Cms::Active, Cms::Draft]);
         }
         
-        return view('pages.index', [
+        return view('admin.pages.index', [
             'posts' => $query->simplePaginate(15),            
         ]);        
     }
@@ -42,7 +42,7 @@ class PageController extends Controller
      */
     public function getCreate()
     {        
-        return view('pages.create', [
+        return view('admin.pages.create', [
             'post' => new Post()
         ]);
     }
@@ -67,7 +67,7 @@ class PageController extends Controller
         
         $request->session()->flash('successMessage', 'Create new page successfully.');        
         
-        return redirect('/pages/create');
+        return redirect('/admin/pages/create');
     }
 
     /**
@@ -91,7 +91,7 @@ class PageController extends Controller
     {
         $post = Post::where('id', $id)->where('type', '=', 'page')->first();                 
                 
-        return view('pages.form', [
+        return view('admin.pages.form', [
             'post' => $post,           
         ]);
     }
@@ -123,7 +123,7 @@ class PageController extends Controller
         
         $request->session()->flash('successMessage', 'Update post successfully.');
         
-        return redirect('/pages/edit/' . $post->id . '/' . $post->slug);
+        return redirect('/admin/pages/edit/' . $post->id . '/' . $post->slug);
     }
     
     /**
@@ -168,6 +168,6 @@ class PageController extends Controller
         
         $request->session()->flash('successMessage', 'Delete post successfully');
         
-        return redirect('/posts');
+        return redirect('/admin/posts');
     }
 }

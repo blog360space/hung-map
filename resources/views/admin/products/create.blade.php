@@ -12,7 +12,7 @@
                 @include('common.errors')
 
                 {!! Form::open([
-                    'url' => 'products/store', 
+                    'url' => '/admin/products/store', 
                     'class' => 'form']) !!}
                     
                 <div class="form-group">
