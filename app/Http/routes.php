@@ -24,30 +24,17 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/', function () {
-        return view('welcome');
-    })->middleware('guest');
+    //    Route::get('/', function () {
+    //        return view('welcome');
+    //    })->middleware('guest');
+
+    
+    Route::get('/', 'FeIndexController@index');
     
     Route::get('/other/tags', 'OtherController@getTags');
     Route::get('/other/branches', 'OtherController@getBranches');
-    Route::get('/other/vehicles', 'OtherController@getVehicles');
+    Route::get('/other/vehicles', 'OtherController@getVehicles');    
     
-    Route::get('/blade', function () {
-        return view('frontend.child', [
-            'name' => 'Hung gau'
-        ]);
-    })
-    ->middleware('guest');
-    
-    Route::get('/json', function () {
-        return response()->json([
-            'name' => 'Abigail',
-            'state' => 'CA'
-        ]);
-
-    })
-    ->middleware('guest');
-
     Route::get('/admin/tasks', 'AdminTaskController@index');
     Route::post('/admin/task', 'AdminTaskController@store');
     Route::delete('/admin/task/{task}', 'AdminTaskController@destroy');
