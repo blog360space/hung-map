@@ -5,7 +5,7 @@
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Edit {{$post->title}}
+                {{ status_icon($post->status) }} Edit {{$post->title}}
             </div>
 
             <div class="panel-body">
@@ -54,6 +54,15 @@
                             </select>
                         </div>
                     </div>
+                    
+                    <div class="form-group clearfix">
+                        {!! Form::label('File') !!}
+                        <div class="col-sm-12">
+                        <iframe src="{{ url('/upload/pages/' . $post->id ) }}"
+                                class="ifUpload"></iframe>
+                        </div>
+                    </div>
+                    
                     <!-- Add Task Button -->
                     <div class="form-group">
                         <div class="col-sm-offset-5 col-sm-6">

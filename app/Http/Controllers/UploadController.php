@@ -75,7 +75,12 @@ class UploadController extends Controller
             if (! $request->hasFile('file')) {
                 throw new Exception('File not found', 1);
             }
-            if (! is_dir($dir)) {
+            
+            if (! is_dir($this->uploadDir .'/' . $type)) {
+                mkdir($this->uploadDir .'/' . $type);
+            }
+            
+            if (! is_dir($dir)) {                
                 mkdir($dir);
             }
             
