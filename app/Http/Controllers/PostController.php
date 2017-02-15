@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
@@ -60,7 +59,9 @@ class PostController extends Controller
             'selected_id' => $categoryId
         ]);
         
-        $query = Post::orderBy('posts.status', 'asc')->orderBy('posts.created_at', 'desc')->where('type', '=', 'post');
+        $query = Post::orderBy('posts.status', 'asc')
+                ->orderBy('posts.created_at', 'desc')
+                ->where('type', '=', 'post');
         
         if (trim($categoryId) != "") {
             $query->join('post_categories', 'post_categories.post_id', '=', 'posts.id')
@@ -76,7 +77,7 @@ class PostController extends Controller
         if ($search != "") {
             $query->where('posts.title', 'LIKE', '%' . addslashes($search) . '%');
         }
-        
+       
         return view('posts.index', [
             'posts' => $query->simplePaginate(15),
             'categoryFilter' => $str
