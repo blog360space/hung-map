@@ -61,9 +61,9 @@
                     <tbody>
                         @foreach ($posts as $post)
                             <tr>
-                                <td class="table-text"><div>
+                                <td class="table-text">{{ status_icon($post->status) }}
                                         <a href="{{ url('/posts/edit/') }}/{{ $post->id }}/{{ $post->slug }}">
-                                            {{ $post->title }}</a></div></td>
+                                            {{ $post->title }}</a></td>
 
                                 <!-- Task Delete Button -->
                                 <td class="text-right">

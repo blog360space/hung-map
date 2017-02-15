@@ -32,8 +32,8 @@ https://laravel.com/docs/5.2/quickstart-intermediate
 - delete
 
 ## product
-- list
-- tag
+- list z
+- tag z
 - create
    - title
    - price

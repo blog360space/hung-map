@@ -60,7 +60,7 @@ class PostController extends Controller
             'selected_id' => $categoryId
         ]);
         
-        $query = Post::orderBy('posts.created_at', 'desc')->where('type', '=', 'post');
+        $query = Post::orderBy('posts.status', 'asc')->orderBy('posts.created_at', 'desc')->where('type', '=', 'post');
         
         if (trim($categoryId) != "") {
             $query->join('post_categories', 'post_categories.post_id', '=', 'posts.id')

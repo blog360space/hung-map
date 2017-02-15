@@ -1,6 +1,7 @@
 <?php
 
 use App\Menu;
+use App\Helpers\Cms;
 
 if (! function_exists('display_menu')):
     function display_menu () {
@@ -58,3 +59,51 @@ if (! function_exists('display_menu')):
     }
     
 endif;
+
+if (! function_exists('status_text')):
+    /**
+     * Display status by text
+     * @param type $code
+     * @param type $first For select box
+     */
+    function status_text ($code = null, $first = '') {
+        $statuses = [
+            Cms::Active => 'Active',
+            Cms::Draft => 'Draft',
+            Cms::Trash => 'Trash',
+        ];
+        
+        if ($first) {
+            array_unshift($statuses, ['' => $first]);
+        }
+        
+        if ($code === null) {
+            if (isset($statuses[$code])) {
+                echo $statuses[$code];
+            }
+        }
+        
+        return $statuses;
+    }
+endif;
+
+
+if (! function_exists('status_icon')):
+    /**
+     * Display status by text
+     * @param type $code
+     * @param type $first For select box
+     */
+    function status_icon ($code = null) {
+        $statuses = [
+            Cms::Active => ['Active', 'glyphicon glyphicon-check'],
+            Cms::Draft => ['Draft', 'glyphicon glyphicon-edit'],
+            Cms::Trash => ['Trash', 'glyphicon glyphicon-trash'],
+        ];
+        $s = '<i class="' . $statuses[$code][1] .'" title="'. $statuses[$code][0] .'"></i>';
+        
+        echo $s;
+    }
+endif;
+
+
