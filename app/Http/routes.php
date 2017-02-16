@@ -29,7 +29,10 @@ Route::group(['middleware' => ['web']], function () {
     //    })->middleware('guest');
 
     
-    Route::get('/', 'FeIndexController@index');
+    Route::get('/', 'FeIndexController@getIndex');
+    Route::get('/about', 'FeIndexController@getAbout');
+    Route::get('/contact', 'FeIndexController@getContact');
+    Route::get('/post', 'FeIndexController@getPost');
     
     Route::get('/other/tags', 'OtherController@getTags');
     Route::get('/other/branches', 'OtherController@getBranches');
