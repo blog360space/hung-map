@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog</title>
-
+    <title>{{ isset($title) ? $title . ' | ' : 'Trang chủ  | ' }}{{ config('myproject.sitename') }}</title>
+    
     <!-- Bootstrap Core CSS -->
     <link href="{{ url('/') }}/themes/clean-blog/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -42,7 +42,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}">Start Bootstrap</a>
+                <a class="navbar-brand" href="{{ url('/') }}">{{ config('myproject.sitename') }}</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

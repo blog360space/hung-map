@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'FeIndexController@getIndex');
     Route::get('/about', 'FeIndexController@getAbout');
     Route::get('/contact', 'FeIndexController@getContact');
-    Route::get('/post', 'FeIndexController@getPost');
+    Route::get('/post/{id?}/{slug?}', 'FeIndexController@getPost');
     
     Route::get('/other/tags', 'OtherController@getTags');
     Route::get('/other/branches', 'OtherController@getBranches');
