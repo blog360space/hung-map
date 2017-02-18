@@ -107,3 +107,34 @@ if (! function_exists('status_icon')):
 endif;
 
 
+if (!function_exists('')):
+    /**
+     * Short description for content
+     * @param type $strContent
+     */
+    function the_excerpt($strContent = '') {
+        echo $strContent;
+    }
+endif;
+
+if (!function_exists('the_date')) {
+    /**
+     * Format date
+     * @param string $date mysql format date
+     */
+    function the_date($date) {
+        echo $date;
+    }
+}
+
+
+if (!function_exists('the_content')) {
+    /**
+     * Format date
+     * @param string $date mysql format date
+     */
+    function the_content($strContent) {
+        echo $strContent;
+    }
+}
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use Exception;
 
 class FeIndexController extends Controller 
 {
@@ -49,11 +50,18 @@ class FeIndexController extends Controller
      */
     public function getPost(Request $request, $id = 0, $slug = '')
     {        
-        $post = Post::where('id', $id)->first();
-                
-        return view('frontend.index.post', [
-            'title' => 'Blog',
-            'post' => $post
-        ]);
+        try {
+            $post = Post::where('id', $id)->first();
+            if (! $post) {
+                throw new Exception('Page not found');
+            }
+
+            return view('frontend.index.post', [
+                'title' => 'Blog',
+                'post' => $post
+            ]);
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
     }
 }

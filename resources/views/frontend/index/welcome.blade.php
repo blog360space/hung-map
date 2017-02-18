@@ -1,25 +1,26 @@
 @extends('layouts.frontend')
 
 @section('content')
+@if(count($posts) > 0)
+@foreach ($posts as $k => $post)
+
+@if($k > 0) 
+<hr>
+@endif
 <div class="post-preview">
-                    <a href="post.html">
-        <h2 class="post-title">
-            Man must explore, and this is exploration at its greatest
+    <a href="{{ url('/post/') }}/{{ $post->id }}/{{ $post->slug }}">
+        <h2 class="post-title" title="{{ $post->title }}">
+            {{ $post->title }}
         </h2>
         <h3 class="post-subtitle">
-            Problems look mighty small from 150 miles up
+            {!! the_excerpt($post->content) !!}
         </h3>
     </a>
-    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> {{ the_date($post->created_at) }}</p>
 </div>
-<hr>
-<div class="post-preview">
-    <a href="post.html">
-        <h2 class="post-title">
-            I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-        </h2>
-    </a>
-    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
-</div>
+@endforeach
+@endif
+
+<p> @if (count($posts) > 0) {{ $posts->links() }} @endif</p>
 <hr>
 @endsection
