@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use Exception;
+use Parsedown;
+use App\Helpers\Cms;
 
 class FeIndexController extends Controller 
 {
@@ -14,7 +16,7 @@ class FeIndexController extends Controller
         $search = isset($request->search) ? trim($request->search) : "";
         
         $query = Post::orderBy('posts.created_at', 'desc')
-                ->where('type', '=', 'post');
+                ->where('type', '=', 'post')->whereIn('posts.status', [Cms::Active]);
         if ($search != "") {
             $query->where('posts.title', 'LIKE', '%' . addslashes($search) . '%');
         }
@@ -38,6 +40,11 @@ class FeIndexController extends Controller
     
     public function getContact()
     {
+//        $Parsedown = new Parsedown();
+//        echo $Parsedown->text('Hello _Parsedown_!');
+        
+        
+        
         return view('frontend.index.contact', [
             'title' => 'Liên hệ'
         ]);

@@ -16,6 +16,7 @@
     <script src="{{ url('/') }}/components/angular/angular.min.js"></script>    
     <link href="{{ url('/') }}/components/aehlke-tag-it/css/jquery.tagit.css" rel="stylesheet" type="text/css">
     <link href="{{ url('/') }}/components/aehlke-tag-it/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+    <link href="{{ url('/') }}/components/md/dist/simplemde.min.css" rel="stylesheet" type="text/css">
     <link href="{{ url('/') }}/css/admin.css" rel="stylesheet" type="text/css">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
@@ -78,7 +79,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>    
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="{{ url('/') }}/components/aehlke-tag-it/js/tag-it.min.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<!--    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script> -->
+    <script src="{{ url('/') }}/components/md/dist/simplemde.min.js"></script>
     <script src="{{ url('/') }}/js/admin.js"></script>
     @yield('script')
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}

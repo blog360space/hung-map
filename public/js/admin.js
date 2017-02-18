@@ -27,9 +27,10 @@ var Post = {
     },
    
     initTinymce: function() {       
-        tinymce.init({
-            selector: '#post-content'
-        });
+//        tinymce.init({
+//            selector: '#post-content'
+//        });
+        var simplemde = new SimpleMDE({ element: $("#post-content")[0] });
     },
    
     initIndex: function() {

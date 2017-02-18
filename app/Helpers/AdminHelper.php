@@ -3,6 +3,15 @@
 use App\Menu;
 use App\Helpers\Cms;
 
+define( 'TIMEBEFORE_NOW',         'now' );
+define( 'TIMEBEFORE_MINUTE',      '{num} minute ago' );
+define( 'TIMEBEFORE_MINUTES',     '{num} minutes ago' );
+define( 'TIMEBEFORE_HOUR',        '{num} hour ago' );
+define( 'TIMEBEFORE_HOURS',       '{num} hours ago' );
+define( 'TIMEBEFORE_YESTERDAY',   'yesterday' );
+define( 'TIMEBEFORE_FORMAT',      '%e %b' );
+define( 'TIMEBEFORE_FORMAT_YEAR', '%e %b, %Y' );
+
 if (! function_exists('display_menu')):
     function display_menu () {
     
@@ -107,13 +116,25 @@ if (! function_exists('status_icon')):
 endif;
 
 
-if (!function_exists('')):
+if (!function_exists('the_excerpt')):
     /**
      * Short description for content
      * @param type $strContent
      */
     function the_excerpt($strContent = '') {
-        echo $strContent;
+        
+        $split = '<!--more-->';
+        $pos = mb_strpos($strContent, $split);
+        
+        if ($pos === 0) {
+            return '';
+        }
+        else if ($pos > 0){
+            echo mb_substr($strContent, 0, $pos);
+        }
+        else {
+            echo $strContent;
+        }
     }
 endif;
 
@@ -123,7 +144,7 @@ if (!function_exists('the_date')) {
      * @param string $date mysql format date
      */
     function the_date($date) {
-        echo $date;
+        echo time_ago(strtotime($date));
     }
 }
 
@@ -138,3 +159,24 @@ if (!function_exists('the_content')) {
     }
 }
 
+function time_ago( $time )
+{
+    $out    = ''; // what we will print out
+    $now    = time(); // current time
+    $diff   = $now - $time; // difference between the current and the provided dates
+
+    if( $diff < 60 ) // it happened now
+        return TIMEBEFORE_NOW;
+
+    elseif( $diff < 3600 ) // it happened X minutes ago
+        return str_replace( '{num}', ( $out = round( $diff / 60 ) ), $out == 1 ? TIMEBEFORE_MINUTE : TIMEBEFORE_MINUTES );
+
+    elseif( $diff < 3600 * 24 ) // it happened X hours ago
+        return str_replace( '{num}', ( $out = round( $diff / 3600 ) ), $out == 1 ? TIMEBEFORE_HOUR : TIMEBEFORE_HOURS );
+
+    elseif( $diff < 3600 * 24 * 2 ) // it happened yesterday
+        return TIMEBEFORE_YESTERDAY;
+
+    else // falling back on a usual date format as it happened later than yesterday
+        return strftime( date( 'Y', $time ) == date( 'Y' ) ? TIMEBEFORE_FORMAT : TIMEBEFORE_FORMAT_YEAR, $time );
+}
