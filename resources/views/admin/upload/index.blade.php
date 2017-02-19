@@ -23,7 +23,7 @@
     @foreach ($files as $file)
     <div class="col-sm-3 col-xs-3 col-md-2">
         <div class="thumbnail hideOverflow">
-            <img src="{{ url('/admin/files/' . $endpoint . '/' . $file)  }}" title="{{ $file }}" alt="{{ $file }}">
+            <img src="{{ url('/files/' . $endpoint . '/' . $file)  }}" title="{{ $file }}" alt="{{ $file }}">
             
             <div class="caption text-right">
                 <form action="{{url('/admin/upload/' .$endpoint)}}" method="POST" style="margin: 0px!important">

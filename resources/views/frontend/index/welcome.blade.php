@@ -22,5 +22,4 @@
 @endif
 
 <p> @if (count($posts) > 0) {{ $posts->links() }} @endif</p>
-<hr>
 @endsection
