@@ -16,7 +16,7 @@
             {!! the_excerpt($post->content) !!}
         </h3>
     </a>
-    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> {{ the_date($post->created_at) }}</p>
+    <p class="post-meta">Posted by {{ the_user($post) }} {{ the_date($post) }}</p>
 </div>
 @endforeach
 @endif

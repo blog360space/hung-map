@@ -66,12 +66,19 @@ https://laravel.com/docs/5.2/quickstart-intermediate
  - iframe z
 
 ## Todo: 
-    - re-factor code view
-     - display status from helper
-     - display status at post, page list
-    - menu editor: front end, backend
-    - add md editor, md output to html
-    - add html template for fe
+    - re-factor code view z
+     - display status from helper z
+     - display status at post, page list z
+    - menu editor: front end, backend 
+    - add md editor, md output to html z
+    - add html template for fe z
     - disable feature register
     - add feature change password z
-    - Change Project title
+    - Change Project title z
+
+    - Add feature created by current login user z
+    - Add refer link to front-end on edit page z
+    - Change post status default to draft
+    - User login can preview a draft post
+    - Frontend only can view the public post 
+   

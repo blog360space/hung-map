@@ -40,11 +40,6 @@ class FeIndexController extends Controller
     
     public function getContact()
     {
-//        $Parsedown = new Parsedown();
-//        echo $Parsedown->text('Hello _Parsedown_!');
-        
-        
-        
         return view('frontend.index.contact', [
             'title' => 'Liên hệ'
         ]);
@@ -64,7 +59,7 @@ class FeIndexController extends Controller
             }
 
             return view('frontend.index.post', [
-                'title' => 'Blog',
+                'title' => $post->title,
                 'post' => $post
             ]);
         } catch (Exception $ex) {

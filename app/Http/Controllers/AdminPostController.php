@@ -29,8 +29,9 @@ class AdminPostController extends Controller
      */
     private $categoryRepo;   
     
-    
-    
+    private $postType = 'post';
+
+
     public function __construct(CategoryRepository $categoryRepo, 
             PostRepository $postRepo, 
             Category $categoryMd) 
@@ -115,6 +116,8 @@ class AdminPostController extends Controller
             'slug' => isset($request->slug) ? Post::checkSlug($request->slug) : '',
             'content' => isset($request->content) ? $request->content : '',
             'status' => isset($request->status) ? $request->status : Cms::Draft,
+            'type' => $this->postType,
+            'created_id' => $request->user()->id
         ]);
         
         if (isset ($request->categories)) {
@@ -186,6 +189,8 @@ class AdminPostController extends Controller
         $post->slug = Post::checkSlug($request->slug);
         $post->content = $request->content;        
         $post->status = isset($request->status) ? $request->status : Cms::Draft;     
+        $post->type = $this->postType;
+        $post->updated_id = $request->user()->id;
         
         if (! $post->save()) {
             throw new Exception('Db error');

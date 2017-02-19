@@ -5,7 +5,8 @@
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                {{ status_icon($post->status) }} Edit {{$post->title}}
+                {{ status_icon($post->status) }} Edit 
+                <a target="_blank" href="{{ url('/post/' . $post->id . '/' . $post->slug . '/?preview=1' ) }}" title="preview">{{$post->title}}</a>
             </div>
 
             <div class="panel-body">

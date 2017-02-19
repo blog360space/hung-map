@@ -2,7 +2,8 @@
 
 use App\Menu;
 use App\Helpers\Cms;
-use Parsedown;
+use \Parsedown;
+use App\Post;
 
 define( 'TIMEBEFORE_NOW',         'now' );
 define( 'TIMEBEFORE_MINUTE',      '{num} minute ago' );
@@ -144,8 +145,8 @@ if (!function_exists('the_date')) {
      * Format date
      * @param string $date mysql format date
      */
-    function the_date($date) {
-        echo time_ago(strtotime($date));
+    function the_date($post) {
+        echo time_ago(strtotime($post->created_at));
     }
 }
 
@@ -158,6 +159,19 @@ if (!function_exists('the_content')) {
     function the_content($strContent) {
         $parsedown = new Parsedown();
         echo $parsedown->text($strContent);
+    }
+}
+
+if (!function_exists('the_user')) {
+    /**
+     * Format date
+     * @param string $date mysql format date
+     */
+    function the_user(Post $post) {
+        $user = $post->user();
+        if ($user instanceof App\User) {
+            echo '<a href="#">' . $user->name . '</a>';
+        }
     }
 }
 

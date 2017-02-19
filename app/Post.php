@@ -25,6 +25,21 @@ class Post extends Model
             'tag_id' ,  'tags');
     }
     
+    public function user()
+    {
+        if (! $this->created_id) {
+            return '';
+        }
+        
+        $user = User::where('id', '=', $this->created_id)->first();
+        
+        if (! $user) {
+            $user = User::where('id', '=', $this->updated_id)->first();
+        }
+        
+        return $user;
+    }
+    
     public static function checkSlug($slug) {
         $tmp = explode("-", $slug);        
         $count = Post::where('slug', '=', $slug )->count();        

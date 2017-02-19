@@ -4,7 +4,7 @@
 <h2 class="post-title" title="{{ $post->title }}">
     {{ $post->title }}
 </h2>
-<p class="post-meta">Posted by <a href="#">Start Bootstrap</a> {{ the_date($post->created_at) }}</p>
+<p class="post-meta">Posted by {{ the_user($post) }} {{ the_date($post) }}</p>
 
 {{ the_content($post->content) }}
 @endsection

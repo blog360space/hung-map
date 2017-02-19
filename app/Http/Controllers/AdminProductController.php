@@ -115,6 +115,7 @@ class AdminProductController extends Controller
             'title' => isset($request->title) ? $request->title : '',
             'price' => isset($request->price) ? $request->price : 0,
             'description' => isset($request->description) ? $request->description : 0,
+            'created_id' => $request->user()->id
         ];
         $product = Product::create($data);
         
@@ -199,6 +200,8 @@ class AdminProductController extends Controller
         $product->title = isset($request->title) ? $request->title : '';
         $product->price = isset($request->price) ? $request->price : 0;
         $product->description = isset($request->description) ? $request->description : '';
+        $product->updated_id = $request->user()->id;
+        
         $product->save();
         
         if (isset ($request->categories)) {

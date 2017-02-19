@@ -56,6 +56,8 @@
                 <table class="table table-striped task-table">
                     <thead>
                         <th>Title</th>
+                        <th>Author</th>
+                        <th>Created</th>
                         <th>&nbsp;</th>
                     </thead>
                     <tbody>
@@ -64,7 +66,8 @@
                                 <td class="table-text">{{ status_icon($post->status) }}
                                         <a href="{{ url('/admin/posts/edit/') }}/{{ $post->id }}/{{ $post->slug }}">
                                             {{ $post->title }}</a></td>
-
+                                <td>{{ the_user($post) }}</td>
+                                <td>{{ the_date($post) }}</td>
                                 <!-- Task Delete Button -->
                                 <td class="text-right">
                                     <form action="{{url('/admin/posts/destroy/' . $post->id)}}" method="POST">
