@@ -43,12 +43,11 @@
                     <div class="form-group">
                         <label for="post-status" class="col-sm-3 control-label">Status</label>
                         <div class="col-sm-12">
-                            <select class="form-control" name="status">
-                            <option value="1"
-                                @if(old('status') == 1)selected="selected"@endif>Publish</option>
-                                <option value="2" 
-                                @if(old('status') == 2)selected="selected"@endif>Draft</option>
-                            </select>
+                            {{ Form::select('status', [                                
+                                1 => 'Active',
+                                2 => 'Draft',                                
+                            ], app('request')->input('status', 2), ['id' => 'statusSl', 
+                                        'class ' => 'form-control input-sm']  ) }}
                         </div>
                     </div>
                     

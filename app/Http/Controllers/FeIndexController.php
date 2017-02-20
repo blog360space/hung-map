@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use Exception;
-use Parsedown;
 use App\Helpers\Cms;
 
 class FeIndexController extends Controller 
@@ -57,10 +56,21 @@ class FeIndexController extends Controller
             if (! $post) {
                 throw new Exception('Page not found');
             }
+            $preview = false;
+            
+            if ($post->status == Cms::Draft && $request->preview == '1') {
+                 $loginUser = $request->user();
+                 if (! isset($loginUser->id) ) {
+                     throw new Exception('Page not found');
+                 } else {
+                     $preview = true;
+                 }
+            }
 
             return view('frontend.index.post', [
                 'title' => $post->title,
-                'post' => $post
+                'post' => $post,
+                'preview' => $preview
             ]);
         } catch (Exception $ex) {
             echo $ex->getMessage();

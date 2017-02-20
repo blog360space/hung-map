@@ -78,7 +78,7 @@ https://laravel.com/docs/5.2/quickstart-intermediate
 
     - Add feature created by current login user z
     - Add refer link to front-end on edit page z
-    - Change post status default to draft
-    - User login can preview a draft post
-    - Frontend only can view the public post 
+    - Change post status default to draft z
+    - User login can preview a draft post z
+    - Frontend only can view the public post z 
    
