@@ -20,8 +20,8 @@
     <!-- Custom Fonts -->
     <link href="{{ url('/') }}/themes/clean-blog/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
+    <!--<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>-->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -86,8 +86,21 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-md-8">
                 @yield('content')
+            </div>
+
+            <div class="col-md-4">
+                <div class="well">
+                <h3>Need Help?</h3>
+                <p>Feeling stuck? Need something more? You can <strong><a href="/bootstrap-design-services">hire a designer</a></strong> to help you with your project or to create a custom build of any theme!</p>
+                </div>
+
+                <div class="well">
+                <h3>Need Help?</h3>
+                
+                <p>Feeling stuck? Need something more? You can <strong><a href="/bootstrap-design-services">hire a designer</a></strong> to help you with your project or to create a custom build of any theme!</p>
+                </div>
             </div>
         </div>
     </div>
