@@ -11,9 +11,12 @@ class CategoryRepository
      * @param type $tree
      * @return string html
      */
-    public function displayCategory($tree = [],  
-            $checkbox = false, $relatedIds = [], 
-            $url = '/categories/edit', $slug = false)
+    public function displayCategory(
+            $tree = [],  
+            $checkbox = false, 
+            $relatedIds = [], 
+            $url = '/categories/edit', 
+            $slug = false)
     {
         $str = '<ul class="categories">';
         foreach ($tree as $category) {

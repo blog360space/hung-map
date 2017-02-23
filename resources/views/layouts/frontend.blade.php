@@ -16,7 +16,8 @@
 
     <!-- Theme CSS -->
     <link href="{{ url('/') }}/themes/clean-blog/css/clean-blog.min.css" rel="stylesheet">
-
+    <link href="{{ url('/') }}/css/styles.css" rel="stylesheet">
+    
     <!-- Custom Fonts -->
     <link href="{{ url('/') }}/themes/clean-blog/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -53,10 +54,7 @@
                     </li>
                     <li>
                         <a href="{{ url('/post/about.29') }}">About</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/post') }}">Sample Post</a>
-                    </li>
+                    </li>                    
                     <li>
                         <a href="{{ url('/contact') }}">Contact</a>
                     </li>
@@ -89,11 +87,13 @@
             <div class="col-md-8">
                 @yield('content')
             </div>
-
+            
             <div class="col-md-4">
+             
+                
                 <div class="well">
-                <h3>Need Help?</h3>
-                <p>Feeling stuck? Need something more? You can <strong><a href="/bootstrap-design-services">hire a designer</a></strong> to help you with your project or to create a custom build of any theme!</p>
+                <h3>Category</h3>
+                {!! $tree !!}
                 </div>
 
                 <div class="well">
