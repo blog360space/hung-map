@@ -2,7 +2,6 @@
 
 use App\Menu;
 use App\Helpers\Cms;
-use \Parsedown;
 use App\Post;
 
 define( 'TIMEBEFORE_NOW',         'now' );
@@ -124,7 +123,7 @@ if (!function_exists('the_excerpt')):
      * @param type $strContent
      */
     function the_excerpt($strContent = '') {
-        $parsedown = new Parsedown();
+        $parsedown = new \Parsedown();
         $split = '<!--more-->';
         $pos = mb_strpos($strContent, $split);
         
@@ -157,7 +156,7 @@ if (!function_exists('the_content')) {
      * @param string $date mysql format date
      */
     function the_content($strContent) {
-        $parsedown = new Parsedown();
+        $parsedown = new \Parsedown();
         echo $parsedown->text($strContent);
     }
 }
