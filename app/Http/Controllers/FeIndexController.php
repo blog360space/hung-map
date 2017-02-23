@@ -49,7 +49,7 @@ class FeIndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPost(Request $request, $id = 0, $slug = '')
+    public function getPost(Request $request, $slug = '', $id = 0)
     {        
         try {
             $post = Post::where('id', $id)->first();

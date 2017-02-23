@@ -8,10 +8,7 @@
 <hr>
 @endif
 <div class="post-preview">
-    <a href="{{ url('/post/') }}/{{ $post->id }}/{{ $post->slug }}">
-        <h2 class="post-title" title="{{ $post->title }}">
-        {{ $post->title }}
-    </h2></a>
+    <h2>{{ the_permalink($post) }}</h2>    
     <p class="post-meta">Posted by {{ the_user($post) }} {{ the_date($post) }}</p>
     <div class="post-subtitle">
         {!! the_excerpt($post->content) !!}

@@ -161,6 +161,19 @@ if (!function_exists('the_content')) {
     }
 }
 
+if (!function_exists('the_permalink')) {
+    /**
+     * Format date
+     * @param string $date mysql format date
+     */
+    function the_permalink($post) {
+        
+        echo '<a href="' . url('/post/' . htmlspecialchars($post->slug) . '.' . $post->id ) . '" title="' . $post->title . '"> ' . $post->title .  ' </a>';
+        
+    }
+}
+
+
 if (!function_exists('the_user')) {
     /**
      * Format date
