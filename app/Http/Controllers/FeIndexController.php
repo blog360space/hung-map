@@ -60,6 +60,31 @@ class FeIndexController extends Controller
         ]);
     }
     
+    public function getTag($slug = '')
+    {   
+        $search = isset($request->search) ? trim($request->search) : "";
+        
+        $query = Post::orderBy('posts.created_at', 'desc')
+                ->where('type', '=', 'post')->whereIn('posts.status', [Cms::Active]);
+        
+        if ($search != "") {
+            $query->where('posts.title', 'LIKE', '%' . addslashes($search) . '%');
+        }
+        
+        if (trim($slug) != "") {
+            $query->join('post_tags', 
+                    'post_tags.post_id', '=', 'posts.id')
+                  ->join('tags', 
+                    'post_tags.tag_id','=', 'tags.id')
+                ->where('tags.slug', '=', $slug );
+        }
+        
+        return view('frontend.index.welcome', [
+            'posts' => $query->simplePaginate(10),
+            'tree' => $this->getCategoryTree()
+        ]);
+    }
+    
     public function getAbout()
     {
         $slug = 'about';  
