@@ -42,7 +42,7 @@ class CategoryRepository
             }
             else {
                 $str .= "<li>"  
-                    . '<a href="' . url($url) . '/' . $category->id . '">'
+                    . '<a href="' . url($url) . '/' . $category->slug. '.' . $category->id . '">'
                     . $category->title . "</a></li>";
             }
             

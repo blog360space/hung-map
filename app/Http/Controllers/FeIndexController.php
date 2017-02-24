@@ -33,13 +33,8 @@ class FeIndexController extends Controller
         ]);
     }
     
-    public function getCategory($slug)
+    public function getCategory($slug, $categoryId)
     {   
-        $categoryId = 0;
-        if (is_numeric($slug)) {
-            $categoryId = $slug;
-        }
-        
         $search = isset($request->search) ? trim($request->search) : "";
         
         $query = Post::orderBy('posts.created_at', 'desc')
