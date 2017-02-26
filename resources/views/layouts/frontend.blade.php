@@ -43,7 +43,9 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}">{{ config('myproject.sitename') }}</a>
+<!--                <a class="navbar-brand" href="{{ url('/') }}">{{ config('myproject.sitename') }}</a>               
+                <a class="navbar-brand small"><em>{{ config('myproject.slogan') }}</em></a>-->
+                
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -72,9 +74,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
+                        <h1 class="mb-hilight mb-heading-name">{{ config('myproject.sitename') }}</h1>
                         <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                        <span class="subheading mb-hilight mb-heading-slogan">{{ config('myproject.slogan') }}</span>
                     </div>
                 </div>
             </div>
@@ -91,7 +93,7 @@
             <div class="col-md-4">
              
                 
-                <div class="well">
+                <div class="well categories-list">
                 <h3>Category</h3>
                 {!! $tree !!}
                 </div>

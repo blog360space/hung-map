@@ -1,0 +1,13 @@
+.site-heading > .mb-hilight {
+    background-color:rgba(0, 0, 0, 0.5);
+}
+
+.site-heading > .mb-heading-name {
+    width: 450px!important;
+    margin: auto!important;
+}
+
+.site-heading > .mb-heading-slogan {
+    width: 347px!important;
+    margin: auto!important;
+}

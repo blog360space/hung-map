@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'sitename' => 'Start Bootstrap',
+    'sitename' => 'Hùng Mập',
     
-    'slogan' => 'Linux phổ biến nhất thế giới.',  
-  
+    'slogan' => 'Dậy sớm thấy ngày dài hơn.',  
 ];
