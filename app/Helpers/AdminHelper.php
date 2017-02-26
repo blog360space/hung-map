@@ -3,6 +3,7 @@
 use App\Menu;
 use App\Helpers\Cms;
 use App\Post;
+use App\Tag;
 
 define( 'TIMEBEFORE_NOW',         'now' );
 define( 'TIMEBEFORE_MINUTE',      '{num} minute ago' );
@@ -208,3 +209,17 @@ function time_ago( $time )
     else // falling back on a usual date format as it happened later than yesterday
         return strftime( date( 'Y', $time ) == date( 'Y' ) ? TIMEBEFORE_FORMAT : TIMEBEFORE_FORMAT_YEAR, $time );
 }
+
+if (!function_exists('display_tags')):
+function display_tags()
+{
+    $tags = Tag::join('post_tags', 'post_tags.tag_id', '=', 'tags.id')->distinct()->get(['id', 'title']);
+    
+    $str = '';
+    foreach ($tags as $tag) {
+        $str .= '<a href="' . url('/post/tag/' . $tag->title . '.' . $tag->id ) . '">' . $tag->title . '</a> ';
+    }
+    
+    echo $str;
+}
+endif;

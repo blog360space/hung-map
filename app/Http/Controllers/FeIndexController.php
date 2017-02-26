@@ -55,7 +55,7 @@ class FeIndexController extends Controller
         ]);
     }
     
-    public function getTag($slug = '')
+    public function getTag($slug = '', $tagId)
     {   
         $search = isset($request->search) ? trim($request->search) : "";
         
@@ -71,7 +71,7 @@ class FeIndexController extends Controller
                     'post_tags.post_id', '=', 'posts.id')
                   ->join('tags', 
                     'post_tags.tag_id','=', 'tags.id')
-                ->where('tags.slug', '=', $slug );
+                ->where('tags.id', '=', $tagId );
         }
         
         return view('frontend.index.welcome', [

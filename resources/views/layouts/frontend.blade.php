@@ -97,9 +97,8 @@
                 </div>
 
                 <div class="well">
-                <h3>Need Help?</h3>
-                
-                <p>Feeling stuck? Need something more? You can <strong><a href="/bootstrap-design-services">hire a designer</a></strong> to help you with your project or to create a custom build of any theme!</p>
+                <h3>Tags</h3>
+                {{ display_tags() }}
                 </div>
             </div>
         </div>
