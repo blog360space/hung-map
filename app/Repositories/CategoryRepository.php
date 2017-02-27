@@ -18,7 +18,7 @@ class CategoryRepository
             $url = '/categories/edit', 
             $slug = false)
     {
-        $str = '<ul class="categories">';
+        $str = '<ul class="categories list-group">';
         foreach ($tree as $category) {
             $strCkb = "";
             
@@ -35,13 +35,13 @@ class CategoryRepository
                         . ' type="checkbox" value="' 
                         . $category->id . '" /> '  ;
                 
-                $str .= "<li>"  
+                $str .= "<li>  class=''"  
                     . $strCkb
                     . '<label for="num-' . $category->id.'">'
                     . $category->title . "</label></li>";
             }
             else {
-                $str .= "<li>"  
+                $str .= "<li class=''>"  
                     . '<a href="' . url($url) . '/' . $category->slug. '.' . $category->id . '">'
                     . $category->title . "</a></li>";
             }

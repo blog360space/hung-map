@@ -91,22 +91,35 @@
             </div>
             
             <div class="col-md-4">
-             
-                
-                <div class="well categories-list">
-                <h3>Category</h3>
+                <div class="mb-box">
+                    <div class="widget-heading">
+                    <h3 class="mb-sidebar-heading">Category</h3>
+                    </div>
                 {!! $tree !!}
                 </div>
-
-                <div class="well">
-                <h3>Tags</h3>
-                {{ display_tags() }}
+                
+                <br class="clear">
+                
+                <div class="mb-box">
+                    <div class="widget-heading">
+                    <h3 class="mb-sidebar-heading">Recent posts</h3>
+                    </div>
+                    {{ recent_posts() }}
                 </div>
+                
+                <br class="clear">
+                
+                <div class="mb-box">
+                    <div class="widget-heading">
+                    <h3 class="mb-sidebar-heading">Tags</h3>
+                    </div>
+                    {{ display_tags() }}
+                </div>
+                
+                
             </div>
         </div>
     </div>
-
-    <hr>
 
     <!-- Footer -->
     <footer>

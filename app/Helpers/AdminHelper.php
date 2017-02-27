@@ -167,9 +167,14 @@ if (!function_exists('the_permalink')) {
      * Format date
      * @param string $date mysql format date
      */
-    function the_permalink($post) {
+    function the_permalink($post, $return = false) {
         
-        echo '<a href="' . url('/post/' . htmlspecialchars($post->slug) . '.' . $post->id ) . '" title="' . $post->title . '"> ' . $post->title .  ' </a>';
+        $s = '<a href="' . url('/post/' . htmlspecialchars($post->slug) . '.' . $post->id ) . '" title="' . $post->title . '"> ' . $post->title .  ' </a>';
+        
+        if ($return) {
+            return $s;
+        }
+        echo $s;
         
     }
 }
@@ -183,7 +188,7 @@ if (!function_exists('the_user')) {
     function the_user(Post $post) {
         $user = $post->user();
         if ($user instanceof App\User) {
-            echo '<a href="#">' . $user->name . '</a>';
+            echo '<a href="'. url('/user/posts/' . $user->name) . '">' . $user->name . '</a>';
         }
     }
 }
@@ -217,9 +222,82 @@ function display_tags()
     
     $str = '';
     foreach ($tags as $tag) {
-        $str .= '<a href="' . url('/post/tag/' . $tag->title . '.' . $tag->id ) . '">' . $tag->title . '</a> ';
+        $str .= '<a class="tag-item" href="' . url('/post/tag/' . $tag->title . '.' . $tag->id ) . '">' . $tag->title . '</a> ';
     }
     
     echo $str;
 }
 endif;
+
+if (!function_exists('recent_posts')):
+function recent_posts()
+{
+    $posts = Post::orderBy('posts.created_at', 'desc')
+                ->where('type', '=', 'post')->whereIn('posts.status', [Cms::Active])
+                ->get();
+    $s = '<ul>';
+    foreach ($posts as $post) {
+        $s .= '<li>';
+        $s .= the_permalink($post, true);
+        $s .= '</li>';
+    }
+    
+    $s .= '</ul>';
+    
+    echo $s;
+}
+endif;
+
+
+if (!function_exists('display_category')):
+/**     
+ * @param type $tree
+ * @return string html
+ */
+function display_category(
+        $tree = [],  
+        $checkbox = false, 
+        $relatedIds = [], 
+        $url = '/categories/edit', 
+        $slug = false)
+{
+    $str = '<ul class="categories list-group">';
+    foreach ($tree as $category) {
+        $strCkb = "";
+
+        if ($checkbox) {
+            $checked = "";
+
+            if (in_array($category->id, $relatedIds)) {
+                $checked = 'checked="checked"';
+            }
+            $strCkb = '<input name="categories[]" ' 
+                    . 'id="num-' . $category->id . '"'
+
+                    . $checked 
+                    . ' type="checkbox" value="' 
+                    . $category->id . '" /> '  ;
+
+            $str .= "<li>  class='list-group-item'"  
+                . $strCkb
+                . '<label for="num-' . $category->id.'">'
+                . $category->title . "</label></li>";
+        }
+        else {
+            $str .= "<li class='list-group-item'>"  
+                . '<a href="' . url($url) . '/' . $category->slug. '.' . $category->id . '">'
+                . $category->title . "</a></li>";
+        }
+
+
+        if (count($category->children)) {
+            $str .= $this->displayCategory($category->children, 
+                    $checkbox, $relatedIds, $url, $slug );
+        }
+    }
+
+    $str .="</ul>";
+
+    return $str;
+}
+endif;    
