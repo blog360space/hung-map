@@ -35,7 +35,7 @@ class CategoryRepository
                         . ' type="checkbox" value="' 
                         . $category->id . '" /> '  ;
                 
-                $str .= "<li>  class=''"  
+                $str .= "<li class=''>  "  
                     . $strCkb
                     . '<label for="num-' . $category->id.'">'
                     . $category->title . "</label></li>";

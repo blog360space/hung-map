@@ -173,6 +173,12 @@
     <script> BASE_URL = '{{url("/")}}';</script>
     @yield('script')
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script>
+        $(document).ready(function(){
+            $('img').addClass('img-responsive');
+        });
+        
+    </script>
 </body>
 
 </html>
