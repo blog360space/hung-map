@@ -218,11 +218,13 @@ function time_ago( $time )
 if (!function_exists('display_tags')):
 function display_tags()
 {
-    $tags = Tag::join('post_tags', 'post_tags.tag_id', '=', 'tags.id')->distinct()->get(['id', 'title']);
+    $tags = Tag::join('post_tags', 'post_tags.tag_id', '=', 'tags.id')->distinct()->get(['id', 'title', 'slug']);
     
     $str = '';
     foreach ($tags as $tag) {
-        $str .= '<a class="tag-item" href="' . url('/post/tag/' . $tag->title . '.' . $tag->id ) . '">' . $tag->title . '</a> ';
+        if ($tag->slug) {
+            $str .= '<a class="tag-item" href="' . url('/post/tag/' . $tag->slug) . '">' . $tag->title . '</a> ';
+        }
     }
     
     echo $str;

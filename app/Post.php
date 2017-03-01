@@ -65,13 +65,15 @@ class Post extends Model
         
         foreach ($tagNames as $tagName) {
             
-            $tagName = trim(str_replace(['"', "'", "\\", "/" ], "", $tagName));            
-            $tag = Tag::where('title', $tagName)->first(['id', 'title']);
+            $tagName = trim(str_replace(['"', "'", "\\", "/" ], "", $tagName));
+            $tagslug = Cms::createSlug($tagName);
+            $tag = Tag::where('slug', $tagslug)->first(['id', 'slug']);
             
             if (! $tag) {
                 //create Tag
                 $tag = new Tag();
-                $tag->title = $tagName;            
+                $tag->title = $tagName;
+                $tag->slug = $tagslug;
                 $tag->save();
             }
             

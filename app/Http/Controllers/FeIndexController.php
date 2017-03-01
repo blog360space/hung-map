@@ -55,8 +55,8 @@ class FeIndexController extends Controller
         ]);
     }
     
-    public function getTag($slug = '', $tagId)
-    {   
+    public function getTag($slug = '')
+    {           
         $search = isset($request->search) ? trim($request->search) : "";
         
         $query = Post::orderBy('posts.created_at', 'desc')
@@ -66,12 +66,12 @@ class FeIndexController extends Controller
             $query->where('posts.title', 'LIKE', '%' . addslashes($search) . '%');
         }
         
-        if (trim($slug) != "") {
+        if (trim($slug) != "") {           
             $query->join('post_tags', 
                     'post_tags.post_id', '=', 'posts.id')
                   ->join('tags', 
                     'post_tags.tag_id','=', 'tags.id')
-                ->where('tags.id', '=', $tagId );
+                ->where('tags.slug', '=', $slug );
         }
         
         return view('frontend.index.welcome', [
