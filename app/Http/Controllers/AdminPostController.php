@@ -11,6 +11,7 @@ use App\Repositories\PostRepository;
 use App\Category;
 use App\Helpers\Cms;
 use Exception;
+use Auth;
 
 class AdminPostController extends Controller
 {
@@ -60,8 +61,8 @@ class AdminPostController extends Controller
             'selected_id' => $categoryId
         ]);
         
-        $query = Post::orderBy('posts.status', 'asc')
-                ->orderBy('posts.created_at', 'desc')
+        $query = Post::orderBy('posts.created_at', 'desc')
+                ->orderBy('posts.status', 'desc')
                 ->where('type', '=', 'post');
         
         if (trim($categoryId) != "") {
@@ -108,18 +109,19 @@ class AdminPostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function postStore(Request $request)
-    {        
+    {   
+        $user = Auth::user();
         $this->validateForm($request);
-        
-        $post = Post::create([
+        $data = [
             'title' => isset($request->title) ? $request->title : '',
             'slug' => isset($request->slug) ? Post::checkSlug($request->slug) : '',
             'content' => isset($request->content) ? $request->content : '',
             'status' => isset($request->status) ? $request->status : Cms::Draft,
             'type' => $this->postType,
-            'created_id' => $request->user()->id
-        ]);
-        
+            'created_id' => $user->id
+        ];
+        $post = Post::create($data);
+        $a = $post->toArray();
         if (isset ($request->categories)) {
             $post->categories()->sync($request->categories);
         }
@@ -128,7 +130,9 @@ class AdminPostController extends Controller
         }
         
         $request->session()->flash('successMessage', 'Create new post successfully.');        
-        
+        if ($request->continueEdit) {
+            return redirect('/admin/posts/edit/' . $post->id . '/' . $post->slug);
+        }
         return redirect('/admin/posts/create');
     }
 
@@ -178,6 +182,7 @@ class AdminPostController extends Controller
      */
     public function postUpdate(Request $request, $id, $slug = '')
     {   
+        $user = Auth::user();
         $post = Post::where('id', $id)->first();
         
         if (! $post) {
@@ -190,7 +195,7 @@ class AdminPostController extends Controller
         $post->content = $request->content;        
         $post->status = isset($request->status) ? $request->status : Cms::Draft;     
         $post->type = $this->postType;
-        $post->updated_id = $request->user()->id;
+        $post->updated_id = $user->id;
         
         if (! $post->save()) {
             throw new Exception('Db error');

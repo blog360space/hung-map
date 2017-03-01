@@ -6,7 +6,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 {{ status_icon($post->status) }} Edit 
-                <a target="_blank" href="{{ url('/post/' . $post->id . '/' . $post->slug . '/?preview=1' ) }}" title="preview">{{$post->title}}</a>
+                <a target="_blank" href="{{ url('/post/' . $post->slug . '.' . $post->id . '?preview=1' ) }}" title="preview">{{$post->title}}</a>
             </div>
 
             <div class="panel-body">

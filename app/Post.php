@@ -7,7 +7,15 @@ use App\Helpers\Cms;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'slug', 'content', 'status', 'type'];
+    protected $fillable = [
+        'title', 
+        'slug', 
+        'content', 
+        'status', 
+        'type',
+        'created_id',
+        'updated_id'
+    ];
     
     public function categories()
     {   

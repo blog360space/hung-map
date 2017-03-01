@@ -69,6 +69,8 @@
                     <!-- Add Task Button -->
                     <div class="form-group">
                         <div class="col-sm-offset-5 col-sm-6">
+                            {{ Form::checkbox('continueEdit', 1, true, []) }}
+                            {!! Form::label('Continue edit') !!} <br />
                             <button type="submit" class="btn btn-default">
                                 <i class="fa fa-btn fa-plus"></i>Add Post</button>
                         </div>
