@@ -53,7 +53,7 @@ Route::group(['middleware' => ['web']], function () {
     
     Route::get('/admin/categories/create', 'AdminCategoryController@getCreate');
     Route::post('/admin/categories/store', 'AdminCategoryController@postStore');
-    Route::get('/admin/categories/edit/{id}', 'AdminCategoryController@getEdit');
+    Route::get('/admin/categories/edit/{slug?}.{id?}', 'AdminCategoryController@getEdit');
     Route::post('/admin/categories/update/{id}', 'AdminCategoryController@postUpdate');
     Route::get('/admin/categories/{type}', 'AdminCategoryController@index');
     Route::delete('/admin/categories/destroy/{id}', 'AdminCategoryController@deleteDestroy');

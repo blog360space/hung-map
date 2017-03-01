@@ -33,7 +33,7 @@ class AdminCategoryController extends Controller
     public function index($type = 'post')
     {
         $tree = Category::tree(0, $type);     
-        $tree = $this->categoriesRepo->displayCategory($tree);
+        $tree = $this->categoriesRepo->displayCategory($tree, [], false, '/admin/categories/edit/');
         
         return view('admin.categories.index', ['tree' => $tree]);
     }
@@ -89,7 +89,7 @@ class AdminCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getEdit($id)
+    public function getEdit($slug = '', $id = 0)
     {
         $category = Category::where('id', $id)->first();        
         return view('admin.categories.edit', [
