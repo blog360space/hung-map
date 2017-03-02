@@ -167,9 +167,8 @@ if (!function_exists('the_permalink')) {
      * Format date
      * @param string $date mysql format date
      */
-    function the_permalink($post, $return = false) {
-        
-        $s = '<a href="' . url('/post/' . htmlspecialchars($post->slug) . '.' . $post->id ) . '" title="' . $post->title . '"> ' . $post->title .  ' </a>';
+    function the_permalink($post, $return = false) {        
+        $s = '<a href="' . url('/post/' . $post->slug . '.' . $post->id ) . '" title="' . $post->title . '"> ' . $post->title .  ' </a>';
         
         if ($return) {
             return $s;

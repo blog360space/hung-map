@@ -22,10 +22,15 @@ class FeIndexController extends Controller
         $search = isset($request->search) ? trim($request->search) : "";
         
         $query = Post::orderBy('posts.created_at', 'desc')
-                ->where('type', '=', 'post')->whereIn('posts.status', [Cms::Active]);
+                ->where('type', '=', 'post')
+                ->whereIn('posts.status', [Cms::Active]);
         if ($search != "") {
             $query->where('posts.title', 'LIKE', '%' . addslashes($search) . '%');
         }
+        
+        $query->select([
+            'posts.*'
+        ]);
         
         return view('frontend.index.welcome', [
             'posts' => $query->simplePaginate(10),
@@ -38,7 +43,8 @@ class FeIndexController extends Controller
         $search = isset($request->search) ? trim($request->search) : "";
         
         $query = Post::orderBy('posts.created_at', 'desc')
-                ->where('type', '=', 'post')->whereIn('posts.status', [Cms::Active]);
+                ->where('type', '=', 'post')
+                ->whereIn('posts.status', [Cms::Active]);
         
         if ($search != "") {
             $query->where('posts.title', 'LIKE', '%' . addslashes($search) . '%');
@@ -48,6 +54,10 @@ class FeIndexController extends Controller
             $query->join('post_categories', 'post_categories.post_id', '=', 'posts.id')
                 ->where('post_categories.category_id', '=', $categoryId );
         }
+        
+        $query->select([
+            'posts.*'
+        ]);
         
         return view('frontend.index.welcome', [
             'posts' => $query->simplePaginate(10),
@@ -73,7 +83,9 @@ class FeIndexController extends Controller
                     'post_tags.tag_id','=', 'tags.id')
                 ->where('tags.slug', '=', $slug );
         }
-        
+        $query->select([
+            'posts.*'
+        ]);
         return view('frontend.index.welcome', [
             'posts' => $query->simplePaginate(10),
             'tree' => $this->getCategoryTree()

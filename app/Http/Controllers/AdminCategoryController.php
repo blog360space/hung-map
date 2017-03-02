@@ -123,7 +123,7 @@ class AdminCategoryController extends Controller
         
         $request->session()->flash('successMessage', 'Update category successfully.');
         
-        return redirect('/admin/categories/edit/' . $id);
+        return redirect('/admin/categories/edit/' . $category->slug  . '.' . $id);
     }
 
     /**
