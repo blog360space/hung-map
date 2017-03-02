@@ -9,6 +9,7 @@ use Exception;
 use App\Helpers\Cms;
 use App\Repositories\CategoryRepository;
 use App\Category;
+use App\Tag;
 
 class FeIndexController extends Controller 
 {
@@ -59,9 +60,12 @@ class FeIndexController extends Controller
             'posts.*'
         ]);
         
+        $category = Category::where('id', '=', $categoryId)->first();
+        
         return view('frontend.index.welcome', [
             'posts' => $query->simplePaginate(10),
-            'tree' => $this->getCategoryTree()
+            'tree' => $this->getCategoryTree(),
+            'category' => $category
         ]);
     }
     
@@ -86,9 +90,13 @@ class FeIndexController extends Controller
         $query->select([
             'posts.*'
         ]);
+        
+        $tag = Tag::where('slug', '=', $slug)->first();
+        
         return view('frontend.index.welcome', [
             'posts' => $query->simplePaginate(10),
-            'tree' => $this->getCategoryTree()
+            'tree' => $this->getCategoryTree(),
+            'tag' => $tag   
         ]);
     }
     
@@ -151,7 +159,7 @@ class FeIndexController extends Controller
     {
         $tree = Category::tree(0, 'post');     
         $tree = $this->categoriesRepo->displayCategory(
-                $tree, false, [], '/category/');
+                $tree, false, [], '/post/category/');
         
         return $tree;
     }

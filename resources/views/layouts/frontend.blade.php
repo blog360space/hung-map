@@ -175,7 +175,7 @@
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script>
         $(document).ready(function(){
-            $('img').addClass('img-responsive');
+            $('img').addClass('img-responsive').addClass('mb-img');
         });
         
     </script>

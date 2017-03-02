@@ -1,6 +1,14 @@
 @extends('layouts.frontend')
 
 @section('content')
+@if(isset($category) && $category->id > 0)
+    <h2 class="page-title">Category {{$category->title}}</h2>
+@endif
+
+@if(isset($tag) && $tag->id > 0)
+    <h2 class="page-title">Tag {{$tag->title}}</h2>
+@endif
+
 @if(count($posts) > 0)
 @foreach ($posts as $k => $post)
 

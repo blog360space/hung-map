@@ -66,3 +66,17 @@ a:hover {
 hr {
        border-top: 1px solid #f5a425;
 }
+
+.page-title {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #5E2750;
+    color: #FFFFFF;
+    
+    margin-top: 0px!important;
+    opacity: 0.8;
+}
+
+.mb-img {
+    margin: auto;
+}
