@@ -10,6 +10,7 @@ use App\Helpers\Cms;
 use App\Repositories\CategoryRepository;
 use App\Category;
 use App\Tag;
+use Illuminate\Support\Facades\DB;
 
 class FeIndexController extends Controller 
 {
@@ -143,13 +144,29 @@ class FeIndexController extends Controller
                      $preview = true;
                  }
             }
-
+            
+            $objs = DB::select('SELECT MAX(id) AS id
+                    FROM posts
+                    WHERE id < ?
+                    UNION 
+                    SELECT MIN(id) AS id
+                    FROM posts
+                    WHERE id > ?', [$post->id, $post->id]);
+            
+            $ids = [];
+            foreach ($objs as $item) {
+                $ids[] = $item->id;
+            }
+            $postsPn = Post::whereIn('id',$ids)->orderBy('id', 'ASC')->get();
+            
             return view('frontend.index.post', [
                 'title' => $post->title,
                 'post' => $post,
                 'preview' => $preview,
-                'tree' => $this->getCategoryTree()
+                'tree' => $this->getCategoryTree(),
+                'postsPn' => $postsPn
             ]);
+            
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
