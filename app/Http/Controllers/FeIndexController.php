@@ -151,7 +151,7 @@ class FeIndexController extends Controller
                     UNION 
                     SELECT MIN(id) AS id
                     FROM posts
-                    WHERE id > ?', [$post->id, $post->id]);
+                    WHERE id > ? AND status = ? ', [$post->id, $post->id, Cms::Active]);
             
             $ids = [];
             foreach ($objs as $item) {

@@ -52,14 +52,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{ url('/') }}">Home</a>
+                        <a href="{{ url('/') }}">Blog</a>
                     </li>
-                    <li>
+<!--                    <li>
                         <a href="{{ url('/post/about.29') }}">About</a>
-                    </li>                    
-                    <li>
+                    </li>                    -->
+<!--                    <li>
                         <a href="{{ url('/contact') }}">Contact</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

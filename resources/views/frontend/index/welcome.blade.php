@@ -23,6 +23,11 @@
     </div>
 </div>
 @endforeach
+
+@else 
+
+<p><em>Chưa có bài viết</em></p>
+
 @endif
 
 <p> @if (count($posts) > 0) {{ $posts->links() }} @endif</p>
