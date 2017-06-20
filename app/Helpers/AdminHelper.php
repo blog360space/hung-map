@@ -234,7 +234,8 @@ if (!function_exists('recent_posts')):
 function recent_posts()
 {
     $posts = Post::orderBy('posts.created_at', 'desc')
-                ->where('type', '=', 'post')->whereIn('posts.status', [Cms::Active])
+                ->where('type', '=', 'post')->whereIn('posts.status', [Cms::Active])                
+                ->limit(10)
                 ->get();
     $s = '<ul>';
     foreach ($posts as $post) {

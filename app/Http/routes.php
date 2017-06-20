@@ -38,7 +38,7 @@ Route::group(['middleware' => ['web']], function () {
     
     Route::get('/other/tags', 'OtherController@getTags');
     Route::get('/other/branches', 'OtherController@getBranches');
-    Route::get('/other/vehicles', 'OtherController@getVehicles');    
+    Route::get('/other/vehicles', 'OtherController@getVehicles');        
     
     Route::get('/admin/tasks', 'AdminTaskController@index');
     Route::post('/admin/task', 'AdminTaskController@store');

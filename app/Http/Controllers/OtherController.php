@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Tag;
 use App\Branch;
 use App\Vehicle;
+use Illuminate\Http\Request;
 
 class OtherController extends Controller
 {
@@ -68,5 +69,5 @@ class OtherController extends Controller
         } catch (\Exception $ex) {
             return response()->json(['msg' => $ex->getMessage()], 400);
         }
-    }
+    }    
 }
