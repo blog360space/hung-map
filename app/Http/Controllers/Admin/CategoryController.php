@@ -10,9 +10,8 @@ use App\Category;
 use App\Repositories\CategoryRepository;
 use App\PostCategory;
 use DB;
-use App\Http\Controllers\Controller;
 
-class AdminCategoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      *
