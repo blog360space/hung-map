@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Post;
 use App\Helpers\Cms;
+use App\Http\Controllers\Controller;
 
-class AdminPageController extends Controller
+class PageController extends Controller
 {
     public function __construct() 
     {

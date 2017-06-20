@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests;
 use Exception;
+use App\Http\Controllers\Controller;
 
-class AdminProfileController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Show the form for creating a change password.

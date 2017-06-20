@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
@@ -10,6 +10,7 @@ use App\Category;
 use App\Repositories\CategoryRepository;
 use App\PostCategory;
 use DB;
+use App\Http\Controllers\Controller;
 
 class AdminCategoryController extends Controller
 {

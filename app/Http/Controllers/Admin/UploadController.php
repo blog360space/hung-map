@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Exception;
@@ -8,8 +8,9 @@ use App\Http\Requests;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Validation\Rule;
 use Validator;
+use App\Http\Controllers\Controller;
 
-class AdminUploadController extends Controller
+class UploadController extends Controller
 {
     /**
      * Dir to store upload files

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -13,7 +13,7 @@ use App\Helpers\Cms;
 use Exception;
 use Auth;
 
-class AdminPostController extends Controller
+class PostController extends Controller
 {
     /**
      * App\Repositories\PostRepository

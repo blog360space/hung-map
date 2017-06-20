@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
@@ -10,8 +10,9 @@ use App\Http\Controllers\AbstractAdminController;
 use App\Task;
 use App\Repositories\TaskRepository;
 use App\Repositories\TodoRepository;
+use App\Http\Controllers\Controller;
 
-class AdminTaskController extends AbstractAdminController
+class TaskController extends AbstractAdminController
 {
     /**
      * The task repository instance.

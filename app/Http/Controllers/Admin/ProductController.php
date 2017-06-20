@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
@@ -11,8 +11,9 @@ use App\Repositories\CategoryRepository;
 use App\Category;
 use App\Branch;
 use App\Vehicle;
+use App\Http\Controllers\Controller;
 
-class AdminProductController extends Controller
+class ProductController extends Controller
 {    
     
     /**
