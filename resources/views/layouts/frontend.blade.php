@@ -90,34 +90,7 @@
                 @yield('content')
             </div>
             
-            <div class="col-md-4">
-                <div class="mb-box">
-                    <div class="widget-heading">
-                    <h3 class="mb-sidebar-heading">Category</h3>
-                    </div>
-                {!! $tree !!}
-                </div>
-                
-                <br class="clear">
-                
-                <div class="mb-box">
-                    <div class="widget-heading">
-                    <h3 class="mb-sidebar-heading">Recent posts</h3>
-                    </div>
-                    {{ recent_posts() }}
-                </div>
-                
-                <br class="clear">
-                
-                <div class="mb-box">
-                    <div class="widget-heading">
-                    <h3 class="mb-sidebar-heading">Tags</h3>
-                    </div>
-                    {{ display_tags() }}
-                </div>
-                
-                
-            </div>
+            @include('layouts.sidebar')
         </div>
     </div>
 

@@ -110,4 +110,19 @@ class Post extends Model
         $this->status = Cms::Trash;
         $this->save();
     }
+    
+    /**
+     * Get archive
+     */
+    public static function archives()
+    {
+        return static::selectRaw(
+            'YEAR(created_at) AS `year`, 
+            MONTHNAME(created_at) AS `month`,
+            COUNT(id) AS published')
+        ->groupBy('year', 'month')
+        ->orderByRaw('min(created_at) desc')
+        ->get()
+        ->toArray(); 
+    }
 }

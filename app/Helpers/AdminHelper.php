@@ -234,7 +234,8 @@ if (!function_exists('recent_posts')):
 function recent_posts()
 {
     $posts = Post::orderBy('posts.created_at', 'desc')
-                ->where('type', '=', 'post')->whereIn('posts.status', [Cms::Active])                
+                ->where('type', '=', 'post')
+                ->whereIn('posts.status', [Cms::Active])                
                 ->limit(10)
                 ->get();
     $s = '<ul>';
@@ -244,8 +245,7 @@ function recent_posts()
         $s .= '</li>';
     }
     
-    $s .= '</ul>';
-    
+    $s .= '</ul>';    
     echo $s;
 }
 endif;
