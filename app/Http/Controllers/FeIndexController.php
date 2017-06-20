@@ -11,6 +11,7 @@ use App\Repositories\CategoryRepository;
 use App\Category;
 use App\Tag;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class FeIndexController extends Controller 
 {
@@ -20,14 +21,21 @@ class FeIndexController extends Controller
     }
     
     public function getIndex()
-    {        
-        $search = isset($request->search) ? trim($request->search) : "";
-        
+    {   
         $query = Post::orderBy('posts.created_at', 'desc')
                 ->where('type', '=', 'post')
                 ->whereIn('posts.status', [Cms::Active]);
-        if ($search != "") {
+        
+        if ($search = request('search')) {
             $query->where('posts.title', 'LIKE', '%' . addslashes($search) . '%');
+        }
+        
+        if  ($month = request('month')) {            
+            $query->whereMonth('created_at', '=', Carbon::parse($month)->month);
+        }
+        
+        if  ($year = request('year')) {
+            $query->whereYear('created_at', '=', $year);
         }
         
         $query->select([
@@ -88,6 +96,7 @@ class FeIndexController extends Controller
                     'post_tags.tag_id','=', 'tags.id')
                 ->where('tags.slug', '=', $slug );
         }
+        
         $query->select([
             'posts.*'
         ]);
