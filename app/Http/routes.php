@@ -29,12 +29,12 @@ Route::group(['middleware' => ['web']], function () {
     //    })->middleware('guest');
 
     
-    Route::get('/', 'FeIndexController@getIndex');
-    Route::get('/about', 'FeIndexController@getAbout');
-    Route::get('/contact', 'FeIndexController@getContact');
-    Route::get('/post/{slug?}.{id?}', 'FeIndexController@getPost');
-    Route::get('/post/category/{slug?}.{id?}', 'FeIndexController@getCategory');
-    Route::get('/post/tag/{slug?}', 'FeIndexController@getTag');
+    Route::get('/', 'IndexController@getIndex');
+    Route::get('/about', 'IndexController@getAbout');
+    Route::get('/contact', 'IndexController@getContact');
+    Route::get('/post/{slug?}.{id?}', 'IndexController@getPost');
+    Route::get('/post/category/{slug?}.{id?}', 'IndexController@getCategory');
+    Route::get('/post/tag/{slug?}', 'IndexController@getTag');
     
     Route::get('/other/tags', 'OtherController@getTags');
     Route::get('/other/branches', 'OtherController@getBranches');

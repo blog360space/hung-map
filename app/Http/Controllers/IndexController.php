@@ -13,7 +13,7 @@ use App\Tag;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class FeIndexController extends Controller 
+class IndexController extends Controller 
 {
     public function __construct(CategoryRepository $categoriesRepo) 
     {        
