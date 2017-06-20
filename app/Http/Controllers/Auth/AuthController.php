@@ -69,4 +69,20 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+    
+    /**
+     * Overwrite trail
+     */
+    protected function showRegistrationForm()
+    {
+
+    }
+    
+    /**
+     * Overwrite trail
+     */
+    protected function register()
+    {
+
+    }
 }

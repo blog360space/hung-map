@@ -29,4 +29,28 @@ class PasswordController extends Controller
     {
         $this->middleware('guest');
     }
+    
+    /**
+     * Overwrite trail
+     */
+    protected function sendResetLinkEmail()
+    {
+        
+    }
+    
+    /**
+     * Overwrite trail
+     */
+    protected function reset()
+    {
+        
+    }   
+    
+    /**
+     * Overwrite trail
+     */
+    protected function showResetForm()
+    {
+        
+    }
 }
